@@ -1,0 +1,43 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 5 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      42       5          Pro rules    1888                                                                
+  java            267       2          Community     718                                                                
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 1 (1 blocking)
+ • Rules run: 309
+ • Targets scanned: 5
+ • Parsed lines: ~100.0%
+ • Scan skipped: 
+   ◦ Matching --exclude patterns: 1
+ • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+Ran 309 rules on 5 files: 1 finding.
+                  
+                  
+┌────────────────┐
+│ 1 Code Finding │
+└────────────────┘
+                                                                                                      
+    codigos/caso03_upload/gemini/java/src/main/java/com/example/fileapp/controller/FileController.java
+   ❯❯❱ java.spring.security.injection.tainted-file-path.tainted-file-path
+          ❰❰ Blocking ❱❱
+          Detected user input controlling a file path. An attacker could control the location of this file, to
+          include going backwards in the directory with '../'. To address this, ensure that user-controlled   
+          variables in file paths are sanitized. You may also consider using a utility method such as         
+          org.apache.commons.io.FilenameUtils.getName(...) to only retrieve the file name from the path.      
+          Details: https://sg.run/x9o0                                                                        
+                                                                                                              
+           42┆ Paths.get(file.getOriginalFilename()))
+

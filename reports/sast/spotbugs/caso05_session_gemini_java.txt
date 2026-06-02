@@ -1,0 +1,6 @@
+L S SECSC: com.exemplo.app.controller.AppController is a Spring endpoint (Controller)  At AppController.java:[line 15]
+L S SECSC: com.exemplo.app.controller.AppController is a Spring endpoint (Controller)  At AppController.java:[line 23]
+H S SECSPRCSRFPD: Disabling Spring Security's CSRF protection is unsafe for standard web applications  At SecurityConfig.java:[line 28]
+M S SECHCP: Hard coded password found  At SecurityConfig.java:[line 48]
+L S SECSC: com.exemplo.app.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 38-49]
+L S SECSC: com.exemplo.app.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 55-60]

@@ -1,0 +1,9 @@
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso04_comments/gemini/typescript/src/index.ts
+   34:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   71:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   92:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  114:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 4 problems (4 errors, 0 warnings)
+

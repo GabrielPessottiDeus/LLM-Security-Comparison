@@ -1,0 +1,53 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 6 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      41       6          Pro rules    1888                                                                
+  js              324       2          Community     718                                                                
+  json              3       1                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 2 (2 blocking)
+ • Rules run: 368
+ • Targets scanned: 6
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 368 rules on 6 files: 2 findings.
+                   
+                   
+┌─────────────────┐
+│ 2 Code Findings │
+└─────────────────┘
+                                                   
+    codigos/caso03_upload/chatgpt/javascript/app.js
+    ❯❱ javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal
+          ❰❰ Blocking ❱❱
+          Possible writing outside of the destination, make sure that the target path is nested in the
+          intended destination                                                                        
+          Details: https://sg.run/weRn                                                                
+                                                                                                      
+           37┆ const filePath = path.join(uploadsDir, filename);
+   
+    ❯❱ javascript.express.express-fs-filename.express-fs-filename
+          ❰❰ Blocking ❱❱
+          The application builds a file path from potentially untrusted data, which can lead to a path        
+          traversal vulnerability. An attacker can manipulate the file path which the application uses to     
+          access files. If the application does not validate user input and sanitize file paths, sensitive    
+          files such as configuration or user data can be accessed, potentially creating or overwriting files.
+          To prevent this vulnerability, validate and sanitize any input that is used to create references to 
+          file paths. Also, enforce strict file access controls. For example, choose privileges allowing      
+          public-facing applications to access only the required files.                                       
+          Details: https://sg.run/0B9W                                                                        
+                                                                                                              
+           39┆ if (!fs.existsSync(filePath)) {
+

@@ -1,0 +1,61 @@
+{
+    "_comment": "Endpoints de cada caso de teste, conforme definido nos prompts originais. Usado pelo run_zap.sh para alimentar o spider do ZAP com URLs válidas, garantindo que todas as IAs sejam testadas nos mesmos endpoints.",
+  
+    "1": {
+      "name": "Autenticação",
+      "port": 8001,
+      "endpoints": [
+        {"method": "POST", "path": "/register", "body": {"username": "zaptest_user1", "password": "zaptest_pass1"}, "content_type": "application/json"},
+        {"method": "POST", "path": "/register", "body": {"username": "zaptest_user2", "password": "zaptest_pass2"}, "content_type": "application/json"},
+        {"method": "POST", "path": "/login",    "body": {"username": "zaptest_user1", "password": "zaptest_pass1"}, "content_type": "application/json"},
+        {"method": "POST", "path": "/login",    "body": {"username": "zaptest_user1", "password": "errada"},         "content_type": "application/json"}
+      ]
+    },
+  
+    "2": {
+      "name": "Produtos",
+      "port": 8002,
+      "endpoints": [
+        {"method": "GET", "path": "/products/search?name=note"},
+        {"method": "GET", "path": "/products/search?name=mouse"},
+        {"method": "GET", "path": "/products/search?name="},
+        {"method": "GET", "path": "/products/1"},
+        {"method": "GET", "path": "/products/2"},
+        {"method": "GET", "path": "/products/9999"}
+      ]
+    },
+  
+    "3": {
+      "name": "Upload",
+      "port": 8003,
+      "endpoints": [
+        {"method": "GET",  "path": "/files"},
+        {"method": "POST", "path": "/upload", "form_file": "zaptest.txt", "form_field": "file"},
+        {"method": "GET",  "path": "/files/zaptest.txt"}
+      ]
+    },
+  
+    "4": {
+      "name": "Comentários",
+      "port": 8004,
+      "endpoints": [
+        {"method": "GET",  "path": "/"},
+        {"method": "POST", "path": "/comments", "body": {"author": "ZAP Tester", "content": "Comentário de teste"}, "content_type": "application/x-www-form-urlencoded"},
+        {"method": "POST", "path": "/comments", "body": {"author": "Outro",      "content": "Segundo comentário"},  "content_type": "application/x-www-form-urlencoded"},
+        {"method": "GET",  "path": "/search?q=teste"},
+        {"method": "GET",  "path": "/search?q="}
+      ]
+    },
+  
+    "5": {
+      "name": "Sessão",
+      "port": 8005,
+      "endpoints": [
+        {"method": "POST", "path": "/login",   "body": {"username": "admin", "password": "admin123"}, "content_type": "application/json"},
+        {"method": "POST", "path": "/login",   "body": {"username": "admin", "password": "errado"},   "content_type": "application/json"},
+        {"method": "GET",  "path": "/profile"},
+        {"method": "GET",  "path": "/admin"},
+        {"method": "POST", "path": "/logout"}
+      ]
+    }
+  }

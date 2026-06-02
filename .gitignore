@@ -1,0 +1,117 @@
+# ============================================================================
+# .gitignore — Comparativo de Vulnerabilidades em Código Gerado por LLMs
+# ============================================================================
+
+# ============================================================================
+# RELATÓRIOS DERIVADOS — versionamos só os JSONs/XMLs brutos
+# ============================================================================
+# JSONs brutos das ferramentas SAST/DAST são MANTIDOS no repositório.
+# Relatórios agregados (CSV/HTML/PDF) são DERIVADOS e regerados pelos scripts.
+
+# CSVs agregados (gerados por report_*.py)
+reports/sast/report_detailed.csv
+reports/sast/report_summary.csv
+reports/sast/report_stats.csv
+reports/dast/report_detailed.csv
+reports/dast/report_summary.csv
+reports/dast/report_stats.csv
+reports/combined/report.csv
+reports/combined/cwe_overlap.csv
+
+# HTMLs/JSONs agregados (gerados por report_*.py)
+reports/sast/report.html
+reports/sast/report.json
+reports/dast/report.html
+reports/dast/report.json
+reports/combined/report.html
+reports/combined/report.json
+
+# PDFs (gerados por generate_pdfs.py)
+reports/**/report.pdf
+
+# Relatórios brutos individuais do ZAP em HTML/MD (mantemos só JSON)
+reports/dast/zap_*.html
+reports/dast/zap_*.md
+
+# Logs do orquestrador
+reports/dast/.app_logs/
+
+# ============================================================================
+# AMBIENTES VIRTUAIS / DEPS — reproduzíveis via requirements.txt
+# ============================================================================
+
+# Python
+**/venv/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+
+# Node.js
+**/node_modules/
+**/dist/
+**/build/
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/.npm/
+
+# TypeScript build output
+**/dist/
+**/*.tsbuildinfo
+
+# Java / Maven
+**/target/
+**/.m2/
+**/*.class
+
+# ============================================================================
+# CONFIGS DE FERRAMENTAS SAST — instaladas via setup_fedora.sh
+# ============================================================================
+sast-configs/node_modules/
+sast-configs/.eslintcache
+
+# ============================================================================
+# ARQUIVOS DE SISTEMA
+# ============================================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# IDE
+# ============================================================================
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+
+# ============================================================================
+# CREDENCIAIS — nunca commitar
+# ============================================================================
+.env
+.env.local
+**/.env
+!.env.example
+
+# ============================================================================
+# ARQUIVOS DE UPLOAD (geram durante testes do caso 3)
+# ============================================================================
+codigos/caso03_upload/**/uploads/
+codigos/caso03_upload/**/uploads/*
+
+# ============================================================================
+# OUTROS TEMPORÁRIOS
+# ============================================================================
+/tmp/
+*.log
+*.tmp
+.cache/
+
+
+finish_setup.sh
+notes.txt

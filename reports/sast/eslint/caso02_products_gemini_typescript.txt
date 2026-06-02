@@ -1,0 +1,9 @@
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso02_products/gemini/typescript/src/db.ts
+  28:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso02_products/gemini/typescript/src/index.ts
+  36:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 2 problems (2 errors, 0 warnings)
+

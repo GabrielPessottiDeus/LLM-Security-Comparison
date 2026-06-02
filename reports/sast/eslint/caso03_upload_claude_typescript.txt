@@ -1,0 +1,6 @@
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso03_upload/claude/typescript/src/app.ts
+  39:8  warning  Found existsSync from package "fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+✖ 1 problem (0 errors, 1 warning)
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Comentarios</title>
+</head>
+<body>
+<h1>Busca de Comentarios</h1>
+
+<p>
+    Termo buscado: <strong th:text="${query}"></strong>
+</p>
+
+<a href="/">Voltar para pagina principal</a>
+
+<h2>Resultados</h2>
+
+<div th:if="${#lists.isEmpty(comments)}">
+    <p>Nenhum comentario encontrado.</p>
+</div>
+
+<ul th:if="${!#lists.isEmpty(comments)}">
+    <li th:each="comment : ${comments}">
+        <strong th:text="${comment.author}">Autor</strong>
+        <p th:text="${comment.content}">Conteudo</p>
+    </li>
+</ul>
+</body>
+</html>

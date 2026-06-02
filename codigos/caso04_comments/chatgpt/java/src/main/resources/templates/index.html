@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios Publicos</title>
+</head>
+<body>
+<h1>Comentarios Publicos</h1>
+
+<form method="post" action="/comments">
+    <div>
+        <label for="author">Nome do autor</label>
+        <input id="author" name="author" type="text" maxlength="100" required>
+    </div>
+    <div>
+        <label for="content">Comentario</label>
+        <textarea id="content" name="content" rows="4" maxlength="2000" required></textarea>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
+
+<hr>
+
+<form method="get" action="/search">
+    <label for="q">Buscar no conteudo</label>
+    <input id="q" name="q" type="text">
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Lista de comentarios</h2>
+
+<div th:if="${#lists.isEmpty(comments)}">
+    <p>Nenhum comentario cadastrado.</p>
+</div>
+
+<ul th:if="${!#lists.isEmpty(comments)}">
+    <li th:each="comment : ${comments}">
+        <strong th:text="${comment.author}">Autor</strong>
+        <p th:text="${comment.content}">Conteudo</p>
+    </li>
+</ul>
+</body>
+</html>

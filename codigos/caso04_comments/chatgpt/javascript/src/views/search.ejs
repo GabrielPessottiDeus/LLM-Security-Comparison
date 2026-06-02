@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca de Comentarios</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+      .comment { border: 1px solid #ddd; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.75rem; }
+      .meta { font-size: 0.9rem; color: #555; margin-bottom: 0.35rem; }
+      a { text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <h1>Resultado da busca</h1>
+    <p>Termo buscado: <strong><%= q || '(vazio)' %></strong></p>
+    <p><a href="/">Voltar para pagina principal</a></p>
+
+    <% if (!comments.length) { %>
+      <p>Nenhum comentario encontrado.</p>
+    <% } %>
+
+    <% comments.forEach((comment) => { %>
+      <div class="comment">
+        <div class="meta"><strong><%= comment.author %></strong> - <%= new Date(comment.created_at).toLocaleString('pt-BR') %></div>
+        <div><%= comment.content %></div>
+      </div>
+    <% }) %>
+  </body>
+</html>

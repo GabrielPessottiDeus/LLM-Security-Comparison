@@ -1,0 +1,70 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 3 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      41       3          Pro rules    1888                                                                
+  js              324       1          Community     718                                                                
+  json              3       1                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 368
+ • Targets scanned: 3
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 368 rules on 3 files: 4 findings.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                                                    
+    codigos/caso04_comments/claude/javascript/app.js
+   ❯❯❯❱ javascript.express.mysql.express-mysql-sqli.express-mysql-sqli
+          ❰❰ Blocking ❱❱
+          Untrusted input might be used to build a database query, which can lead to a SQL injection         
+          vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to    
+          sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this         
+          vulnerability, use prepared statements that do not concatenate user-controllable strings and use   
+          parameterized queries where SQL commands and user data are strictly separated. Also, consider using
+          an object-relational (ORM) framework to operate with safer abstractions.                           
+          Details: https://sg.run/306W                                                                       
+                                                                                                             
+           83┆ await pool.execute(
+           84┆   'INSERT INTO comments (author, content) VALUES (?, ?)',
+           85┆   [author, content]
+           86┆ );
+            ⋮┆----------------------------------------
+           92┆ const [rows] = await pool.execute(
+           93┆   'SELECT author, content FROM comments WHERE content LIKE ? ORDER BY created_at DESC',
+           94┆   [`%${q}%`]
+           95┆ );
+   
+    ❯❱ javascript.express.security.injection.raw-html-format.raw-html-format
+          ❰❰ Blocking ❱❱
+          User data flows into the host portion of this manually-constructed HTML. This can introduce a Cross-
+          Site-Scripting (XSS) vulnerability if this comes from user-provided input. Consider using a         
+          sanitization library such as DOMPurify to sanitize the HTML within.                                 
+          Details: https://sg.run/5DO3                                                                        
+                                                                                                              
+           96┆ const body = `<h2>Resultados para: ${escapeHtml(q)}</h2>${renderComments(rows)}`;
+   
+    ❯❱ javascript.express.security.audit.xss.direct-response-write.direct-response-write
+          ❰❰ Blocking ❱❱
+          Detected directly writing to a Response object from user-defined input. This bypasses any HTML      
+          escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use
+          'resp.render()' to render safely escaped HTML.                                                      
+          Details: https://sg.run/vzGl                                                                        
+                                                                                                              
+           97┆ res.send(renderPage('Busca', body));
+

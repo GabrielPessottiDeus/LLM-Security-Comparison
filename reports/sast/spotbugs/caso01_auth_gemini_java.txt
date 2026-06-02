@@ -1,0 +1,2 @@
+L S SECSC: com.auth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 28-42]
+L S SECSC: com.auth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 47-58]

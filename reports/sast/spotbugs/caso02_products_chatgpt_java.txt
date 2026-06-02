@@ -1,0 +1,2 @@
+L S SECSC: com.example.products.controller.ProductController is a Spring endpoint (Controller)  At ProductController.java:[line 25]
+L S SECSC: com.example.products.controller.ProductController is a Spring endpoint (Controller)  At ProductController.java:[line 30]

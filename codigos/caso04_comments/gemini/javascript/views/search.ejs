@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Busca</title>
+</head>
+<body>
+    <h1>Resultados da Busca</h1>
+    <p>Termo pesquisado: <strong>"<%= query %>"</strong></p>
+    
+    <a href="/"><button>Voltar para a página inicial</button></a>
+
+    <hr>
+    <h2>Comentários Encontrados</h2>
+
+    <% if (comments.length === 0) { %>
+        <p>Nenhum comentário encontrado com esse termo.</p>
+    <% } else { %>
+        <ul>
+            <% comments.forEach(function(comment) { %>
+                <li style="margin-bottom: 15px;">
+                    <strong><%= comment.author %></strong> 
+                    <span style="color: #666; font-size: 0.9em;">
+                        em <%= new Date(comment.created_at).toLocaleString('pt-BR') %>
+                    </span>
+                    <p style="margin: 5px 0 0 0;"><%= comment.content %></p>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+</body>
+</html>

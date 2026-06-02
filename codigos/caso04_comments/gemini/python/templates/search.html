@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Busca</title>
+</head>
+<body>
+    <h1>Resultados da Busca por: "{{ query }}"</h1>
+    
+    <a href="/">Voltar para a página principal</a>
+    <hr>
+
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author }}</strong> ({{ comment.created_at }}):<br>
+                {{ comment.content }}
+            </li>
+        {% else %}
+            <li>Nenhum comentário encontrado com o termo buscado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

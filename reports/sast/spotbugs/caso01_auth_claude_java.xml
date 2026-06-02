@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="4.8.6" sequence="0" timestamp="1779811128921" analysisTimestamp="1779811132447" release="">
+  <Project projectName="">
+    <Jar>codigos/caso01_auth/claude/java/target/classes</Jar>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.3.0/spring-boot-starter-data-jpa-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-aop/3.3.0/spring-boot-starter-aop-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/aspectj/aspectjweaver/1.9.22/aspectjweaver-1.9.22.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/hibernate/orm/hibernate-core/6.5.2.Final/hibernate-core-6.5.2.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/io/smallrye/jandex/3.1.2/jandex-3.1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.5/jaxb-runtime-4.0.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.5/jaxb-core-4.0.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/eclipse/angus/angus-activation/2.0.2/angus-activation-2.0.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/glassfish/jaxb/txw2/4.0.5/txw2-4.0.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/data/spring-data-jpa/3.3.0/spring-data-jpa-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/data/spring-data-commons/3.3.0/spring-data-commons-3.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-orm/6.1.8/spring-orm-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-aspects/6.1.8/spring-aspects-6.1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar</AuxClasspathEntry>
+    <Plugin id="com.h3xstream.findsecbugs" enabled="true"/>
+  </Project>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.example.auth.controller.AuthController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.example.auth.controller.AuthController" start="15" end="30" sourcefile="AuthController.java" sourcepath="com/example/auth/controller/AuthController.java"/>
+    </Class>
+    <Method classname="com.example.auth.controller.AuthController" name="login" signature="(Lcom/example/auth/dto/AuthRequest;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.example.auth.controller.AuthController" start="28" end="30" startBytecode="0" endBytecode="167" sourcefile="AuthController.java" sourcepath="com/example/auth/controller/AuthController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.example.auth.controller.AuthController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.example.auth.controller.AuthController" start="15" end="30" sourcefile="AuthController.java" sourcepath="com/example/auth/controller/AuthController.java"/>
+    </Class>
+    <Method classname="com.example.auth.controller.AuthController" name="register" signature="(Lcom/example/auth/dto/AuthRequest;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.example.auth.controller.AuthController" start="21" end="23" startBytecode="0" endBytecode="167" sourcefile="AuthController.java" sourcepath="com/example/auth/controller/AuthController.java"/>
+    </Method>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 26 May 2026 12:58:48 -0300" total_classes="6" referenced_classes="58" total_bugs="2" total_size="77" num_packages="6" java_version="21.0.11" vm_version="21.0.11+10" cpu_seconds="6.47" clock_seconds="1.46" peak_mbytes="236.23" alloc_mbytes="768.00" gc_seconds="0.02" priority_3="2">
+    <PackageStats package="com.example.auth" total_bugs="0" total_types="1" total_size="6">
+      <ClassStats class="com.example.auth.AuthApplication" sourceFile="AuthApplication.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.example.auth.controller" total_bugs="2" total_types="1" total_size="14" priority_3="2">
+      <ClassStats class="com.example.auth.controller.AuthController" sourceFile="AuthController.java" interface="false" size="14" bugs="2" priority_3="2"/>
+    </PackageStats>
+    <PackageStats package="com.example.auth.dto" total_bugs="0" total_types="1" total_size="10">
+      <ClassStats class="com.example.auth.dto.AuthRequest" sourceFile="AuthRequest.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.example.auth.model" total_bugs="0" total_types="1" total_size="21">
+      <ClassStats class="com.example.auth.model.User" sourceFile="User.java" interface="false" size="21" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.example.auth.repository" total_bugs="0" total_types="1" total_size="3">
+      <ClassStats class="com.example.auth.repository.UserRepository" sourceFile="UserRepository.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.example.auth.service" total_bugs="0" total_types="1" total_size="23">
+      <ClassStats class="com.example.auth.service.AuthService" sourceFile="AuthService.java" interface="false" size="23" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="286" invocations="706" avgMicrosecondsPerInvocation="405" maxMicrosecondsPerInvocation="8120" standardDeviationMicrosecondsPerInvocation="822"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="85" invocations="712" avgMicrosecondsPerInvocation="119" maxMicrosecondsPerInvocation="3357" standardDeviationMicrosecondsPerInvocation="195"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="71" invocations="58" avgMicrosecondsPerInvocation="1231" maxMicrosecondsPerInvocation="10510" standardDeviationMicrosecondsPerInvocation="2393"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="47" invocations="58" avgMicrosecondsPerInvocation="824" maxMicrosecondsPerInvocation="5720" standardDeviationMicrosecondsPerInvocation="1450"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="36" invocations="122" avgMicrosecondsPerInvocation="299" maxMicrosecondsPerInvocation="1971" standardDeviationMicrosecondsPerInvocation="369"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="36" invocations="112" avgMicrosecondsPerInvocation="324" maxMicrosecondsPerInvocation="12422" standardDeviationMicrosecondsPerInvocation="1277"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="32" invocations="58" avgMicrosecondsPerInvocation="551" maxMicrosecondsPerInvocation="12964" standardDeviationMicrosecondsPerInvocation="2088"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="31" invocations="662" avgMicrosecondsPerInvocation="46" maxMicrosecondsPerInvocation="761" standardDeviationMicrosecondsPerInvocation="91"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="24" invocations="58" avgMicrosecondsPerInvocation="422" maxMicrosecondsPerInvocation="5845" standardDeviationMicrosecondsPerInvocation="939"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.impl.ZipCodeBaseFactory" totalMilliseconds="21" invocations="64" avgMicrosecondsPerInvocation="335" maxMicrosecondsPerInvocation="9250" standardDeviationMicrosecondsPerInvocation="1139"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="19" invocations="23" avgMicrosecondsPerInvocation="851" maxMicrosecondsPerInvocation="16152" standardDeviationMicrosecondsPerInvocation="3268"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="18" invocations="58" avgMicrosecondsPerInvocation="321" maxMicrosecondsPerInvocation="2825" standardDeviationMicrosecondsPerInvocation="620"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="15" invocations="58" avgMicrosecondsPerInvocation="268" maxMicrosecondsPerInvocation="1665" standardDeviationMicrosecondsPerInvocation="390"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="13" invocations="58" avgMicrosecondsPerInvocation="239" maxMicrosecondsPerInvocation="2145" standardDeviationMicrosecondsPerInvocation="482"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="13" invocations="58" avgMicrosecondsPerInvocation="237" maxMicrosecondsPerInvocation="3968" standardDeviationMicrosecondsPerInvocation="591"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.taintanalysis.TaintDataflowEngine" totalMilliseconds="12" invocations="21" avgMicrosecondsPerInvocation="577" maxMicrosecondsPerInvocation="4436" standardDeviationMicrosecondsPerInvocation="971"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

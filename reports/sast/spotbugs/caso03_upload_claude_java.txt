@@ -1,0 +1,5 @@
+M S SECPTI: This API (java/nio/file/Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;) reads a file whose location might be specified by user input  At FileService.java:[line 40]
+M S SECPTI: This API (java/nio/file/Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;) reads a file whose location might be specified by user input  At FileService.java:[line 35]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 26-27]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 32-33]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[line 41]

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Relatório SAST — Comparativo LLMs</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         margin: 0; padding: 0; background: #f5f5f7; color: #1d1d1f; }
+  header { background: #1d1d1f; color: white; padding: 24px 32px; }
+  header h1 { margin: 0; font-size: 24px; }
+  header p { margin: 8px 0 0; opacity: 0.7; }
+  main { max-width: 1400px; margin: 0 auto; padding: 24px 32px; }
+  section { background: white; border-radius: 8px; padding: 20px 24px;
+            margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  h2 { margin: 0 0 16px; font-size: 18px; border-bottom: 2px solid #e5e5e7;
+       padding-bottom: 8px; }
+  h3 { margin: 16px 0 8px; font-size: 15px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #e5e5e7;
+           vertical-align: top; }
+  th { background: #f5f5f7; font-weight: 600; }
+  tr:hover { background: #fafafa; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 12px; }
+  .stat-card { background: #f5f5f7; padding: 16px; border-radius: 6px; }
+  .stat-card .label { font-size: 11px; text-transform: uppercase; color: #666;
+                      letter-spacing: 0.5px; }
+  .stat-card .value { font-size: 28px; font-weight: 600; margin-top: 4px; }
+  .sev-high, .sev-error { color: #d32f2f; font-weight: 600; }
+  .sev-medium, .sev-warning { color: #f57c00; font-weight: 600; }
+  .sev-low, .sev-info { color: #1976d2; font-weight: 600; }
+  .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;
+             padding: 12px; background: #f5f5f7; border-radius: 6px; }
+  .filters label { font-size: 12px; }
+  .filters select { padding: 6px 10px; border: 1px solid #d2d2d7;
+                    border-radius: 4px; font-size: 13px; }
+  .finding-row td { font-size: 12px; }
+  .code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 11px;
+          background: #f5f5f7; padding: 4px 6px; border-radius: 3px;
+          white-space: pre-wrap; word-break: break-all; max-width: 400px; }
+  details { margin: 8px 0; }
+  details summary { cursor: pointer; padding: 8px; background: #f5f5f7;
+                    border-radius: 4px; font-weight: 600; }
+  details[open] summary { margin-bottom: 8px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px;
+           font-size: 11px; font-weight: 600; }
+  .badge-tool { background: #e3f2fd; color: #1565c0; }
+  .badge-cwe { background: #fce4ec; color: #c2185b; }
+  .empty { color: #999; font-style: italic; padding: 20px; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Relatório SAST — Comparativo LLMs</h1>
+
+  <p>Total: 139 findings extraídos de 48 combinações analisadas</p>
+</header>
+<main>
+
+<section>
+  <h2>Visão geral</h2>
+  <div class="stats-grid">
+<div class="stat-card"><div class="label">Total de findings</div><div class="value">139</div></div>
+<div class="stat-card"><div class="label">HIGH</div><div class="value sev-high">1</div></div>
+<div class="stat-card"><div class="label">ERROR</div><div class="value sev-error">20</div></div>
+<div class="stat-card"><div class="label">MEDIUM</div><div class="value sev-medium">24</div></div>
+<div class="stat-card"><div class="label">WARNING</div><div class="value sev-warning">46</div></div>
+<div class="stat-card"><div class="label">LOW</div><div class="value sev-low">42</div></div>
+</div></section>
+<section><h2>Findings por ferramenta</h2><table><thead><tr><th>Ferramenta</th><th>Total</th></tr></thead><tbody>
+<tr><td><span class="badge badge-tool">spotbugs</span></td><td>53</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td>51</td></tr>
+<tr><td><span class="badge badge-tool">eslint</span></td><td>21</td></tr>
+<tr><td><span class="badge badge-tool">bandit</span></td><td>14</td></tr>
+</tbody></table></section>
+<section><h2>Findings por IA</h2><table><thead><tr><th>IA</th><th>Total</th></tr></thead><tbody>
+<tr><td>gemini</td><td>52</td></tr>
+<tr><td>claude</td><td>45</td></tr>
+<tr><td>chatgpt</td><td>42</td></tr>
+</tbody></table></section>
+<section><h2>Findings por linguagem</h2><table><thead><tr><th>Linguagem</th><th>Total</th></tr></thead><tbody>
+<tr><td>java</td><td>54</td></tr>
+<tr><td>javascript</td><td>29</td></tr>
+<tr><td>python</td><td>28</td></tr>
+<tr><td>typescript</td><td>28</td></tr>
+</tbody></table></section>
+<section><h2>Findings por caso</h2><table><thead><tr><th>Caso</th><th>Total</th></tr></thead><tbody>
+<tr><td>caso03_upload</td><td>36</td></tr>
+<tr><td>caso05_session</td><td>34</td></tr>
+<tr><td>caso04_comments</td><td>30</td></tr>
+<tr><td>caso01_auth</td><td>20</td></tr>
+<tr><td>caso02_products</td><td>19</td></tr>
+</tbody></table></section>
+<section><h2>Top 20 regras mais disparadas</h2><table><thead><tr><th>Ferramenta</th><th>Regra</th><th>Ocorrências</th></tr></thead><tbody>
+<tr><td><span class="badge badge-tool">spotbugs</span></td><td><code>SPRING_ENDPOINT</code></td><td>42</td></tr>
+<tr><td><span class="badge badge-tool">bandit</span></td><td><code>B104</code></td><td>14</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>14</td></tr>
+<tr><td><span class="badge badge-tool">eslint</span></td><td><code>@typescript-eslint/no-explicit-any</code></td><td>10</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>6</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>6</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>6</td></tr>
+<tr><td><span class="badge badge-tool">eslint</span></td><td><code>security/detect-non-literal-fs-filename</code></td><td>5</td></tr>
+<tr><td><span class="badge badge-tool">eslint</span></td><td><code>@typescript-eslint/ban-types</code></td><td>4</td></tr>
+<tr><td><span class="badge badge-tool">spotbugs</span></td><td><code>ENTITY_LEAK</code></td><td>4</td></tr>
+<tr><td><span class="badge badge-tool">spotbugs</span></td><td><code>PATH_TRAVERSAL_IN</code></td><td>4</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.xss.direct-response-write.direct-response-write</code></td><td>3</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain</code></td><td>3</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires</code></td><td>3</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path</code></td><td>3</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure</code></td><td>3</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name</code></td><td>2</td></tr>
+<tr><td><span class="badge badge-tool">eslint</span></td><td><code>@typescript-eslint/no-unused-vars</code></td><td>2</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>java.spring.security.injection.tainted-file-path.tainted-file-path</code></td><td>1</td></tr>
+<tr><td><span class="badge badge-tool">semgrep</span></td><td><code>javascript.express.security.injection.raw-html-format.raw-html-format</code></td><td>1</td></tr>
+</tbody></table></section>
+<section><h2>Top 15 CWEs mais frequentes</h2><table><thead><tr><th>CWE</th><th>Ocorrências</th></tr></thead><tbody>
+<tr><td><span class="badge badge-cwe">CWE-605</span></td><td>14</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-668: Exposure of Resource to Wrong Sphere</span></td><td>14</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-522: Insufficiently Protected Credentials</span></td><td>14</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#x27;Path Traversal&#x27;)</span></td><td>12</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#x27;SQL Injection&#x27;)</span></td><td>6</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-79: Improper Neutralization of Input During Web Page Generation (&#x27;Cross-site Scripting&#x27;)</span></td><td>4</td></tr>
+<tr><td><span class="badge badge-cwe">CWE-23: Relative Path Traversal</span></td><td>1</td></tr>
+</tbody></table></section>
+<section><h2>Matriz IA × Linguagem (totais)</h2>
+<table><thead><tr><th>IA \ Linguagem</th>
+<th>java</th>
+<th>javascript</th>
+<th>python</th>
+<th>typescript</th>
+<th>Total</th></tr></thead><tbody>
+<tr><td><strong>chatgpt</strong></td>
+<td>16</td>
+<td>7</td>
+<td>10</td>
+<td>9</td>
+<td><strong>42</strong></td></tr>
+<tr><td><strong>claude</strong></td>
+<td>18</td>
+<td>12</td>
+<td>10</td>
+<td>5</td>
+<td><strong>45</strong></td></tr>
+<tr><td><strong>gemini</strong></td>
+<td>20</td>
+<td>10</td>
+<td>8</td>
+<td>14</td>
+<td><strong>52</strong></td></tr>
+</tbody></table>
+</section>
+<section><h2>Detalhamento por combinação</h2>
+<p style="color:#666;font-size:13px">Clique em cada item para expandir e ver todos os findings detectados.</p>
+<details>
+<summary>caso01_auth → chatgpt / java — <strong>2 findings</strong> (LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:18</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:18</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → chatgpt / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:84</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">83     init_db()
+84     app.run(host=&quot;0.0.0.0&quot;, port=8001)
+85 else:</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:84</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8001)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → chatgpt / typescript — <strong>5 findings</strong> (ERROR: 5)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/ban-types</code></td><td>index.ts:17</td><td>Don&#x27;t use `{}` as a type. `{}` actually means &quot;any non-nullish value&quot;.
+- If you want a type meaning &quot;any object&quot;, you probably want `object` instead.
+- If you want a type meaning &quot;any value&quot;, you probably want `unknown` instead.
+- If you want a type meaning &quot;empty object&quot;, you probably want `Record&lt;</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/ban-types</code></td><td>index.ts:17</td><td>Don&#x27;t use `{}` as a type. `{}` actually means &quot;any non-nullish value&quot;.
+- If you want a type meaning &quot;any object&quot;, you probably want `object` instead.
+- If you want a type meaning &quot;any value&quot;, you probably want `unknown` instead.
+- If you want a type meaning &quot;empty object&quot;, you probably want `Record&lt;</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:29</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/ban-types</code></td><td>index.ts:38</td><td>Don&#x27;t use `{}` as a type. `{}` actually means &quot;any non-nullish value&quot;.
+- If you want a type meaning &quot;any object&quot;, you probably want `object` instead.
+- If you want a type meaning &quot;any value&quot;, you probably want `unknown` instead.
+- If you want a type meaning &quot;empty object&quot;, you probably want `Record&lt;</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/ban-types</code></td><td>index.ts:38</td><td>Don&#x27;t use `{}` as a type. `{}` actually means &quot;any non-nullish value&quot;.
+- If you want a type meaning &quot;any object&quot;, you probably want `object` instead.
+- If you want a type meaning &quot;any value&quot;, you probably want `unknown` instead.
+- If you want a type meaning &quot;empty object&quot;, you probably want `Record&lt;</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → claude / java — <strong>2 findings</strong> (LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:15</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:15</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → claude / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:97</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">96     init_db()
+97     app.run(host=&quot;0.0.0.0&quot;, port=8001)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:97</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8001)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → claude / typescript — <strong>1 findings</strong> (ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:26</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → gemini / java — <strong>2 findings</strong> (LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:21</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:21</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → gemini / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:94</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">93 if __name__ == &#x27;__main__&#x27;:
+94     app.run(host=&#x27;0.0.0.0&#x27;, port=8001)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:94</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&#x27;0.0.0.0&#x27;, port=8001)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso01_auth → gemini / typescript — <strong>2 findings</strong> (ERROR: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:25</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:42</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → chatgpt / java — <strong>2 findings</strong> (LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:19</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:19</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → chatgpt / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:82</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">81     init_db()
+82     app.run(host=&quot;0.0.0.0&quot;, port=8002)
+83 else:</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:82</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8002)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → chatgpt / typescript — <strong>1 findings</strong> (ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-unused-vars</code></td><td>index.ts:11</td><td>&#x27;_next&#x27; is defined but never used.</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → claude / java — <strong>4 findings</strong> (MEDIUM: 2, LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>ENTITY_LEAK</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>ENTITY_LEAK</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → claude / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:85</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">84     init_db()
+85     app.run(host=&quot;0.0.0.0&quot;, port=8002)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:85</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8002)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → gemini / java — <strong>4 findings</strong> (MEDIUM: 2, LOW: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>ENTITY_LEAK</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>ENTITY_LEAK</code></td><td>ProductController.java:16</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → gemini / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:86</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">85 if __name__ == &#x27;__main__&#x27;:
+86     app.run(host=&#x27;0.0.0.0&#x27;, port=8002)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:86</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&#x27;0.0.0.0&#x27;, port=8002)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso02_products → gemini / typescript — <strong>2 findings</strong> (ERROR: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>db.ts:28</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:36</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → chatgpt / java — <strong>5 findings</strong> (LOW: 3, MEDIUM: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:28</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:28</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:28</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>CT_CONSTRUCTOR_THROW</code></td><td>FileStorageService.java:20</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>PATH_TRAVERSAL_IN</code></td><td>FileStorageService.java:20</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → chatgpt / javascript — <strong>3 findings</strong> (WARNING: 2, ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>security/detect-non-literal-fs-filename</code></td><td>app.js:39</td><td>Found existsSync from package &quot;fs&quot; with non literal argument at index 0</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>app.js:37</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.join(uploadsDir, filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>app.js:39</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">if (!fs.existsSync(filePath)) {</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → chatgpt / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:109</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">108 if __name__ == &quot;__main__&quot;:
+109     app.run(host=&quot;0.0.0.0&quot;, port=8003)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:109</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8003)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → chatgpt / typescript — <strong>2 findings</strong> (WARNING: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>server.ts:52</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.resolve(uploadsDir, filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>server.ts:59</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">await fs.promises.access(filePath, fs.constants.R_OK);</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → claude / java — <strong>5 findings</strong> (LOW: 3, MEDIUM: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:20</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:20</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:20</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>PATH_TRAVERSAL_IN</code></td><td>FileService.java:29</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>PATH_TRAVERSAL_IN</code></td><td>FileService.java:29</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → claude / javascript — <strong>3 findings</strong> (WARNING: 2, ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>security/detect-non-literal-fs-filename</code></td><td>app.js:35</td><td>Found existsSync from package &quot;fs&quot; with non literal argument at index 0</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>app.js:34</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.join(UPLOADS_DIR, req.params.filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>app.js:35</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">if (!fs.existsSync(filePath)) {</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → claude / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:85</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">84     init_db()
+85     app.run(host=&#x27;0.0.0.0&#x27;, port=8003)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:85</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&#x27;0.0.0.0&#x27;, port=8003)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → claude / typescript — <strong>3 findings</strong> (WARNING: 3)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-warning">WARNING</td><td><code>security/detect-non-literal-fs-filename</code></td><td>app.ts:39</td><td>Found existsSync from package &quot;fs&quot; with non literal argument at index 0</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>app.ts:37</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.join(UPLOADS_DIR, filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>app.ts:39</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">if (!fs.existsSync(filePath)) {</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → gemini / java — <strong>5 findings</strong> (LOW: 3, ERROR: 1, MEDIUM: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-error">ERROR</td><td><code>java.spring.security.injection.tainted-file-path.tainted-file-path</code></td><td>FileController.java:42</td><td>Detected user input controlling a file path. An attacker could control the location of this file, to include going backwards in the directory with &#x27;../&#x27;. To address this, ensure that user-controlled variables in file paths are sanitized. You may also consider using a utility method such as org.apach</td><td>CWE-23: Relative Path Traversal<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">Paths.get(file.getOriginalFilename()))</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:21</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:21</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>FileController.java:21</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>PATH_TRAVERSAL_IN</code></td><td>FileController.java:21</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → gemini / javascript — <strong>3 findings</strong> (WARNING: 2, ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>security/detect-non-literal-fs-filename</code></td><td>index.js:47</td><td>Found existsSync from package &quot;fs&quot; with non literal argument at index 0</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>index.js:45</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.join(uploadDir, filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>index.js:47</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">if (!fs.existsSync(filePath)) {</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso03_upload → gemini / typescript — <strong>3 findings</strong> (WARNING: 3)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-warning">WARNING</td><td><code>security/detect-non-literal-fs-filename</code></td><td>index.ts:42</td><td>Found existsSync from package &quot;fs&quot; with non literal argument at index 0</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal</code></td><td>index.ts:40</td><td>Possible writing outside of the destination, make sure that the target path is nested in the intended destination</td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">const filePath = path.join(uploadDir, filename);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.express-fs-filename.express-fs-filename</code></td><td>index.ts:42</td><td>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the file path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as </td><td>CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')<br>A05:2017 - Broken Access Control; A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">if (!fs.existsSync(filePath)) {</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → chatgpt / java — <strong>3 findings</strong> (LOW: 3)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:16</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:16</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → chatgpt / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:87</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">86 if __name__ == &quot;__main__&quot;:
+87     app.run(host=&quot;0.0.0.0&quot;, port=8004)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:87</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8004)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → chatgpt / typescript — <strong>1 findings</strong> (ERROR: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-unused-vars</code></td><td>server.ts:66</td><td>&#x27;_next&#x27; is defined but never used.</td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → claude / java — <strong>3 findings</strong> (LOW: 3)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:12</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:12</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:12</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → claude / javascript — <strong>4 findings</strong> (CRITICAL: 2, WARNING: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>app.js:83</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">await pool.execute(
+    &#x27;INSERT INTO comments (author, content) VALUES (?, ?)&#x27;,
+    [author, content]
+  );</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>app.js:92</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">const [rows] = await pool.execute(
+    &#x27;SELECT author, content FROM comments WHERE content LIKE ? ORDER BY created_at DESC&#x27;,
+    [`%${q}%`]
+  );</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.injection.raw-html-format.raw-html-format</code></td><td>app.js:96</td><td>User data flows into the host portion of this manually-constructed HTML. This can introduce a Cross-Site-Scripting (XSS) vulnerability if this comes from user-provided input. Consider using a sanitization library such as DOMPurify to sanitize the HTML within.</td><td>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')<br>A07:2017 - Cross-Site Scripting (XSS); A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">const body = `&lt;h2&gt;Resultados para: ${escapeHtml(q)}&lt;/h2&gt;${renderComments(rows)}`;</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.xss.direct-response-write.direct-response-write</code></td><td>app.js:97</td><td>Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use &#x27;resp.render()&#x27; to render safely escaped HTML.</td><td>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')<br>A07:2017 - Cross-Site Scripting (XSS); A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">res.send(renderPage(&#x27;Busca&#x27;, body));</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → claude / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:80</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">79     init_db()
+80     app.run(host=&quot;0.0.0.0&quot;, port=8004)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:80</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8004)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → claude / typescript — <strong>1 findings</strong> (WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.xss.direct-response-write.direct-response-write</code></td><td>index.ts:32</td><td>Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use &#x27;resp.render()&#x27; to render safely escaped HTML.</td><td>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')<br>A07:2017 - Cross-Site Scripting (XSS); A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">res.send(searchPage(q, rows as Comment[]));</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → gemini / java — <strong>3 findings</strong> (LOW: 3)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:14</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:14</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>CommentController.java:14</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → gemini / javascript — <strong>2 findings</strong> (CRITICAL: 2)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>app.js:55</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">await pool.query(&#x27;INSERT INTO comments (author, content) VALUES (?, ?)&#x27;, [author, content]);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>app.js:66</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">const [rows] = await pool.query(&#x27;SELECT * FROM comments WHERE content LIKE ? ORDER BY created_at DESC&#x27;, [`%${query}%`]);</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → gemini / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:63</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">62 if __name__ == &#x27;__main__&#x27;:
+63     app.run(host=&#x27;0.0.0.0&#x27;, port=8004)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:63</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&#x27;0.0.0.0&#x27;, port=8004)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso04_comments → gemini / typescript — <strong>7 findings</strong> (ERROR: 4, CRITICAL: 2, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:34</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:71</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:92</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">eslint</span></td><td class="sev-error">ERROR</td><td><code>@typescript-eslint/no-explicit-any</code></td><td>index.ts:114</td><td>Unexpected any. Specify a different type.</td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>index.ts:102</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">await pool.query(&#x27;INSERT INTO comments (author, content) VALUES (?, ?)&#x27;, [author, content]);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-critical">CRITICAL</td><td><code>javascript.express.mysql.express-mysql-sqli.express-mysql-sqli</code></td><td>index.ts:113</td><td>Untrusted input might be used to build a database query, which can lead to a SQL injection vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this vulnerability, use pre</td><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')<br>A01:2017 - Injection; A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">const [rows] = await pool.query(&#x27;SELECT author, content FROM comments WHERE content LIKE ? ORDER BY created_at DESC&#x27;, [`%${q}%`]);</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.xss.direct-response-write.direct-response-write</code></td><td>index.ts:114</td><td>Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use &#x27;resp.render()&#x27; to render safely escaped HTML.</td><td>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')<br>A07:2017 - Cross-Site Scripting (XSS); A03:2021 - Injection; A05:2025 - Injection</td><td><div class="code">res.send(renderSearchPage(q, rows as any[]));</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → chatgpt / java — <strong>4 findings</strong> (LOW: 4)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:19</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:19</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:19</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:19</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → chatgpt / javascript — <strong>4 findings</strong> (WARNING: 4)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain</code></td><td>app.js:19</td><td>Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it to compare against the domain of the server in which the URL is being requested. If they match, then check the path attribute next.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">session({
+    name: &#x27;sid&#x27;,
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      secure: process.env.NODE_ENV === &#x27;production&#x27;,
+      maxAge: 30 * 60 * 1000
+    }
+  })</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires</code></td><td>app.js:19</td><td>Default session middleware settings: `expires` not set. Use it to set expiration date for persistent cookies.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">session({
+    name: &#x27;sid&#x27;,
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      secure: process.env.NODE_ENV === &#x27;production&#x27;,
+      maxAge: 30 * 60 * 1000
+    }
+  })</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path</code></td><td>app.js:19</td><td>Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to compare against the request path. If this and domain match, then send the cookie in the request.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">session({
+    name: &#x27;sid&#x27;,
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      secure: process.env.NODE_ENV === &#x27;production&#x27;,
+      maxAge: 30 * 60 * 1000
+    }
+  })</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure</code></td><td>app.js:19</td><td>Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie over HTTPS.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">session({
+    name: &#x27;sid&#x27;,
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      secure: process.env.NODE_ENV === &#x27;production&#x27;,
+      maxAge: 30 * 60 * 1000
+    }
+  })</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → chatgpt / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:69</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">68 if __name__ == &quot;__main__&quot;:
+69     app.run(host=&quot;0.0.0.0&quot;, port=8005)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:69</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8005)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → claude / java — <strong>4 findings</strong> (LOW: 4)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:26</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:26</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:26</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:26</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → claude / javascript — <strong>5 findings</strong> (WARNING: 5)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name</code></td><td>server.js:12</td><td>Don’t use the default session cookie name Using the default session cookie name can open your app to attacks. The security issue posed is similar to X-Powered-By: a potential attacker can use it to fingerprint the server and target attacks accordingly.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+  secret: process.env.SESSION_SECRET || &#x27;default-secret-change-in-production&#x27;,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain</code></td><td>server.js:12</td><td>Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it to compare against the domain of the server in which the URL is being requested. If they match, then check the path attribute next.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+  secret: process.env.SESSION_SECRET || &#x27;default-secret-change-in-production&#x27;,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires</code></td><td>server.js:12</td><td>Default session middleware settings: `expires` not set. Use it to set expiration date for persistent cookies.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+  secret: process.env.SESSION_SECRET || &#x27;default-secret-change-in-production&#x27;,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path</code></td><td>server.js:12</td><td>Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to compare against the request path. If this and domain match, then send the cookie in the request.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+  secret: process.env.SESSION_SECRET || &#x27;default-secret-change-in-production&#x27;,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure</code></td><td>server.js:12</td><td>Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie over HTTPS.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+  secret: process.env.SESSION_SECRET || &#x27;default-secret-change-in-production&#x27;,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → claude / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:65</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">64 if __name__ == &quot;__main__&quot;:
+65     app.run(host=&quot;0.0.0.0&quot;, port=8005)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:65</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&quot;0.0.0.0&quot;, port=8005)</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → gemini / java — <strong>6 findings</strong> (LOW: 4, MEDIUM: 1, HIGH: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-high">HIGH</td><td><code>SPRING_CSRF_PROTECTION_DISABLED</code></td><td>SecurityConfig.java:23</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AppController.java:11</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AppController.java:11</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:28</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-low">LOW</td><td><code>SPRING_ENDPOINT</code></td><td>AuthController.java:28</td><td></td><td></td><td></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">spotbugs</span></td><td class="sev-medium">MEDIUM</td><td><code>HARD_CODE_PASSWORD</code></td><td>SecurityConfig.java:23</td><td></td><td></td><td></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → gemini / javascript — <strong>5 findings</strong> (WARNING: 5)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name</code></td><td>server.js:12</td><td>Don’t use the default session cookie name Using the default session cookie name can open your app to attacks. The security issue posed is similar to X-Powered-By: a potential attacker can use it to fingerprint the server and target attacks accordingly.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain</code></td><td>server.js:12</td><td>Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it to compare against the domain of the server in which the URL is being requested. If they match, then check the path attribute next.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires</code></td><td>server.js:12</td><td>Default session middleware settings: `expires` not set. Use it to set expiration date for persistent cookies.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path</code></td><td>server.js:12</td><td>Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to compare against the request path. If this and domain match, then send the cookie in the request.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure</code></td><td>server.js:12</td><td>Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie over HTTPS.</td><td>CWE-522: Insufficiently Protected Credentials<br>A02:2017 - Broken Authentication; A04:2021 - Insecure Design; A06:2025 - Insecure Design</td><td><div class="code">app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 // 24 horas
+    }
+}));</div></td></tr>
+</tbody></table></details>
+<details>
+<summary>caso05_session → gemini / python — <strong>2 findings</strong> (MEDIUM: 1, WARNING: 1)</summary>
+<table><thead><tr><th>Ferramenta</th><th>Severidade</th><th>Regra</th><th>Arquivo:Linha</th><th>Mensagem</th><th>CWE/OWASP</th><th>Código</th></tr></thead><tbody>
+<tr class="finding-row"><td><span class="badge badge-tool">bandit</span></td><td class="sev-medium">MEDIUM</td><td><code>B104</code></td><td>app.py:50</td><td>Possible binding to all interfaces.</td><td>CWE-605</td><td><div class="code">49 if __name__ == &#x27;__main__&#x27;:
+50     app.run(host=&#x27;0.0.0.0&#x27;, port=8005, debug=False)</div></td></tr>
+<tr class="finding-row"><td><span class="badge badge-tool">semgrep</span></td><td class="sev-warning">WARNING</td><td><code>python.flask.security.audit.app-run-param-config.avoid_app_run_with_bad_host</code></td><td>app.py:50</td><td>Running flask app with host 0.0.0.0 could expose the server publicly.</td><td>CWE-668: Exposure of Resource to Wrong Sphere<br>A01:2021 - Broken Access Control; A01:2025 - Broken Access Control</td><td><div class="code">app.run(host=&#x27;0.0.0.0&#x27;, port=8005, debug=False)</div></td></tr>
+</tbody></table></details>
+</section>
+</main></body></html>

@@ -1,0 +1,22 @@
+{
+    "name": "caso01_auth",
+    "version": "1.0.0",
+    "description": "API de autenticação",
+    "main": "dist/index.js",
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/index.js"
+    },
+    "dependencies": {
+      "bcrypt": "^5.1.1",
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "mysql2": "^3.9.7"
+    },
+    "devDependencies": {
+      "@types/bcrypt": "^5.0.2",
+      "@types/express": "^4.17.21",
+      "@types/node": "^20.12.12",
+      "typescript": "^5.4.5"
+    }
+  }

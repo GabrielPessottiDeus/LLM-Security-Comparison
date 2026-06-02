@@ -1,0 +1,114 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 4 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      41       4          Pro rules    1888                                                                
+  js              324       1          Community     718                                                                
+  json              3       1                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 5 (5 blocking)
+ • Rules run: 368
+ • Targets scanned: 4
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 368 rules on 4 files: 5 findings.
+                   
+                   
+┌─────────────────┐
+│ 5 Code Findings │
+└─────────────────┘
+                                                      
+    codigos/caso05_session/gemini/javascript/server.js
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name
+          ❰❰ Blocking ❱❱
+          Don’t use the default session cookie name Using the default session cookie name can open your app to
+          attacks. The security issue posed is similar to X-Powered-By: a potential attacker can use it to    
+          fingerprint the server and target attacks accordingly.                                              
+          Details: https://sg.run/1Z5x                                                                        
+                                                                                                              
+           12┆ app.use(session({
+           13┆     secret: process.env.SESSION_SECRET,
+           14┆     resave: false,
+           15┆     saveUninitialized: false,
+           16┆     cookie: {
+           17┆         httpOnly: true,
+           18┆         maxAge: 1000 * 60 * 60 * 24 // 24 horas
+           19┆     }
+           20┆ }));
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it
+          to compare against the domain of the server in which the URL is being requested. If they match, then
+          check the path attribute next.                                                                      
+          Details: https://sg.run/rd41                                                                        
+                                                                                                              
+           12┆ app.use(session({
+           13┆     secret: process.env.SESSION_SECRET,
+           14┆     resave: false,
+           15┆     saveUninitialized: false,
+           16┆     cookie: {
+           17┆         httpOnly: true,
+           18┆         maxAge: 1000 * 60 * 60 * 24 // 24 horas
+           19┆     }
+           20┆ }));
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `expires` not set. Use it to set expiration date for persistent
+          cookies.                                                                                            
+          Details: https://sg.run/N4eG                                                                        
+                                                                                                              
+           12┆ app.use(session({
+           13┆     secret: process.env.SESSION_SECRET,
+           14┆     resave: false,
+           15┆     saveUninitialized: false,
+           16┆     cookie: {
+           17┆         httpOnly: true,
+           18┆         maxAge: 1000 * 60 * 60 * 24 // 24 horas
+           19┆     }
+           20┆ }));
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to
+          compare against the request path. If this and domain match, then send the cookie in the request.   
+          Details: https://sg.run/b7pd                                                                       
+                                                                                                             
+           12┆ app.use(session({
+           13┆     secret: process.env.SESSION_SECRET,
+           14┆     resave: false,
+           15┆     saveUninitialized: false,
+           16┆     cookie: {
+           17┆         httpOnly: true,
+           18┆         maxAge: 1000 * 60 * 60 * 24 // 24 horas
+           19┆     }
+           20┆ }));
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie
+          over HTTPS.                                                                                        
+          Details: https://sg.run/9oKz                                                                       
+                                                                                                             
+           12┆ app.use(session({
+           13┆     secret: process.env.SESSION_SECRET,
+           14┆     resave: false,
+           15┆     saveUninitialized: false,
+           16┆     cookie: {
+           17┆         httpOnly: true,
+           18┆         maxAge: 1000 * 60 * 60 * 24 // 24 horas
+           19┆     }
+           20┆ }));
+

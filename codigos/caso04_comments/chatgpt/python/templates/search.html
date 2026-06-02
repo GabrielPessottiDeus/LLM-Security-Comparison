@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca de Comentários</title>
+  <style>
+    body { font-family: sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+    ul { list-style: none; padding: 0; }
+    li { border: 1px solid #ddd; border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
+    .meta { color: #333; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    a { display: inline-block; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <a href="/">Voltar</a>
+  <h1>Resultado da busca</h1>
+  <p>Termo buscado: <strong>{{ query }}</strong></p>
+
+  <ul>
+    {% for comment in comments %}
+      <li>
+        <div class="meta"><strong>{{ comment.author }}</strong> - {{ comment.created_at }}</div>
+        <div>{{ comment.content }}</div>
+      </li>
+    {% else %}
+      <li>Nenhum comentário encontrado para este termo.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

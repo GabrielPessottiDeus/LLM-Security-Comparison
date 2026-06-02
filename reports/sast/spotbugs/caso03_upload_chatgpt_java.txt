@@ -1,0 +1,5 @@
+M S SECPTI: This API (java/nio/file/Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;) reads a file whose location might be specified by user input  At FileStorageService.java:[line 36]
+M B CT: Exception thrown in class com.caso03.upload.service.FileStorageService at new com.caso03.upload.service.FileStorageService() will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.  At FileStorageService.java:[line 26]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 34-35]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 40-43]
+L S SECSC: com.caso03.upload.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[line 51]

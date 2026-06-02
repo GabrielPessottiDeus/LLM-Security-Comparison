@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comentarios Publicos</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+      h1, h2 { margin-bottom: 0.75rem; }
+      form { margin-bottom: 1.5rem; }
+      input, textarea, button { width: 100%; padding: 0.6rem; margin-bottom: 0.75rem; }
+      textarea { min-height: 120px; resize: vertical; }
+      .comment { border: 1px solid #ddd; padding: 0.75rem; border-radius: 6px; margin-bottom: 0.75rem; }
+      .meta { font-size: 0.9rem; color: #555; margin-bottom: 0.35rem; }
+      .top-actions { margin-bottom: 1rem; }
+      .top-actions input { width: auto; min-width: 250px; display: inline-block; margin-right: 0.35rem; }
+      .top-actions button { width: auto; display: inline-block; }
+    </style>
+  </head>
+  <body>
+    <h1>Comentarios Publicos</h1>
+
+    <form class="top-actions" method="GET" action="/search">
+      <input type="text" name="q" placeholder="Buscar no conteudo" />
+      <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Novo comentario</h2>
+    <form method="POST" action="/comments">
+      <input type="text" name="author" placeholder="Nome do autor" required />
+      <textarea name="content" placeholder="Comentario" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Lista de comentarios</h2>
+    <% if (!comments.length) { %>
+      <p>Nenhum comentario cadastrado.</p>
+    <% } %>
+
+    <% comments.forEach((comment) => { %>
+      <div class="comment">
+        <div class="meta"><strong><%= comment.author %></strong> - <%= new Date(comment.created_at).toLocaleString('pt-BR') %></div>
+        <div><%= comment.content %></div>
+      </div>
+    <% }) %>
+  </body>
+</html>

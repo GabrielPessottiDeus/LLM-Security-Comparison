@@ -1,0 +1,23 @@
+# Configuração do Semgrep
+# Usamos os rulesets oficiais de segurança que cobrem as 4 linguagens do trabalho.
+# Documentação: https://semgrep.dev/docs/
+
+# Os rulesets são passados via --config no comando, mas deixamos
+# documentados aqui para referência:
+#
+# Rulesets utilizados:
+#   p/security-audit     -> auditoria geral de segurança (todas as linguagens)
+#   p/owasp-top-ten      -> cobertura do OWASP Top 10
+#   p/python             -> regras específicas de Python
+#   p/flask              -> regras específicas de Flask
+#   p/java               -> regras específicas de Java
+#   p/javascript         -> regras específicas de JavaScript
+#   p/typescript         -> regras específicas de TypeScript
+#   p/nodejs             -> regras específicas de Node.js
+#   p/expressjs          -> regras específicas de Express
+#   p/sql-injection      -> regras específicas de SQL Injection
+#   p/xss                -> regras específicas de XSS
+#   p/secrets            -> detecção de segredos hardcoded
+#   p/jwt                -> regras específicas de JWT
+
+rules: []  # As regras são fornecidas via --config no script de execução

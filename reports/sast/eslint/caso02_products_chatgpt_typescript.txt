@@ -1,0 +1,6 @@
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso02_products/chatgpt/typescript/src/index.ts
+  11:54  error  '_next' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+

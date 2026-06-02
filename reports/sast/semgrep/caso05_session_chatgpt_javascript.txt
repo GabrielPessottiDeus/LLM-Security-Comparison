@@ -1,0 +1,105 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 4 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      41       4          Pro rules    1888                                                                
+  js              324       1          Community     718                                                                
+  json              3       1                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 4 (4 blocking)
+ • Rules run: 368
+ • Targets scanned: 4
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 368 rules on 4 files: 4 findings.
+                   
+                   
+┌─────────────────┐
+│ 4 Code Findings │
+└─────────────────┘
+                                                    
+    codigos/caso05_session/chatgpt/javascript/app.js
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `domain` not set. It indicates the domain of the cookie; use it
+          to compare against the domain of the server in which the URL is being requested. If they match, then
+          check the path attribute next.                                                                      
+          Details: https://sg.run/rd41                                                                        
+                                                                                                              
+           19┆ session({
+           20┆   name: 'sid',
+           21┆   secret: sessionSecret,
+           22┆   resave: false,
+           23┆   saveUninitialized: false,
+           24┆   cookie: {
+           25┆     httpOnly: true,
+           26┆     sameSite: 'lax',
+           27┆     secure: process.env.NODE_ENV === 'production',
+           28┆     maxAge: 30 * 60 * 1000
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `expires` not set. Use it to set expiration date for persistent
+          cookies.                                                                                            
+          Details: https://sg.run/N4eG                                                                        
+                                                                                                              
+           19┆ session({
+           20┆   name: 'sid',
+           21┆   secret: sessionSecret,
+           22┆   resave: false,
+           23┆   saveUninitialized: false,
+           24┆   cookie: {
+           25┆     httpOnly: true,
+           26┆     sameSite: 'lax',
+           27┆     secure: process.env.NODE_ENV === 'production',
+           28┆     maxAge: 30 * 60 * 1000
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `path` not set. It indicates the path of the cookie; use it to
+          compare against the request path. If this and domain match, then send the cookie in the request.   
+          Details: https://sg.run/b7pd                                                                       
+                                                                                                             
+           19┆ session({
+           20┆   name: 'sid',
+           21┆   secret: sessionSecret,
+           22┆   resave: false,
+           23┆   saveUninitialized: false,
+           24┆   cookie: {
+           25┆     httpOnly: true,
+           26┆     sameSite: 'lax',
+           27┆     secure: process.env.NODE_ENV === 'production',
+           28┆     maxAge: 30 * 60 * 1000
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure
+          ❰❰ Blocking ❱❱
+          Default session middleware settings: `secure` not set. It ensures the browser only sends the cookie
+          over HTTPS.                                                                                        
+          Details: https://sg.run/9oKz                                                                       
+                                                                                                             
+           19┆ session({
+           20┆   name: 'sid',
+           21┆   secret: sessionSecret,
+           22┆   resave: false,
+           23┆   saveUninitialized: false,
+           24┆   cookie: {
+           25┆     httpOnly: true,
+           26┆     sameSite: 'lax',
+           27┆     secure: process.env.NODE_ENV === 'production',
+           28┆     maxAge: 30 * 60 * 1000
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+

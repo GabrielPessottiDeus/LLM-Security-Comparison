@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentários Públicos</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        input, textarea { padding: 8px; font-size: 1rem; }
+        button { padding: 8px 16px; cursor: pointer; width: fit-content; }
+        .comment { border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .comment strong { display: block; }
+        .comment small { color: #888; }
+        .search-bar { margin-bottom: 20px; }
+        .search-bar input { width: 60%; }
+    </style>
+</head>
+<body>
+    <h1>Comentários Públicos</h1>
+
+    <div class="search-bar">
+        <form action="/search" method="get">
+            <input type="text" name="q" placeholder="Buscar comentários...">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <h2>Novo Comentário</h2>
+    <form action="/comments" method="post">
+        <input type="text" name="author" placeholder="Nome do autor" required>
+        <textarea name="content" rows="4" placeholder="Escreva seu comentário..." required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Comentários</h2>
+    {% if comments %}
+        {% for c in comments %}
+        <div class="comment">
+            <strong>{{ c.author }}</strong>
+            <p>{{ c.content }}</p>
+            <small>{{ c.created_at }}</small>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum comentário ainda.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Busca</title>
+</head>
+<body>
+    <h1>Resultados para: <span th:text="${q}"></span></h1>
+
+    <a href="/">Voltar</a>
+
+    <hr>
+
+    <div th:if="${#lists.isEmpty(comments)}">
+        <p>Nenhum comentário encontrado.</p>
+    </div>
+
+    <div th:each="comment : ${comments}">
+        <strong th:text="${comment.author}"></strong>
+        <p th:text="${comment.content}"></p>
+        <hr>
+    </div>
+</body>
+</html>

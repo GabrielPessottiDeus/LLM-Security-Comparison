@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentários Públicos</title>
+</head>
+<body>
+    <h1>Deixe seu comentário</h1>
+    
+    <form action="/comments" method="POST">
+        <div>
+            <label for="author">Nome do Autor:</label><br>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <br>
+        <div>
+            <label for="content">Comentário:</label><br>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea>
+        </div>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <hr>
+    
+    <h2>Buscar</h2>
+    <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="Buscar em comentários...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <hr>
+
+    <h2>Comentários</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author }}</strong> ({{ comment.created_at }}):<br>
+                {{ comment.content }}
+            </li>
+        {% else %}
+            <li>Nenhum comentário cadastrado ainda.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

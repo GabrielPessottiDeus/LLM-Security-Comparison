@@ -1,0 +1,4 @@
+L S SECSC: com.example.sessionauth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 27-40]
+L S SECSC: com.example.sessionauth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 48-54]
+L S SECSC: com.example.sessionauth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 62-67]
+L S SECSC: com.example.sessionauth.controller.AuthController is a Spring endpoint (Controller)  At AuthController.java:[lines 72-78]

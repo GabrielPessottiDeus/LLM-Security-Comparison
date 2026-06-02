@@ -1,0 +1,3 @@
+L S SECSC: com.example.comments.controller.CommentController is a Spring endpoint (Controller)  At CommentController.java:[lines 20-21]
+L S SECSC: com.example.comments.controller.CommentController is a Spring endpoint (Controller)  At CommentController.java:[lines 26-30]
+L S SECSC: com.example.comments.controller.CommentController is a Spring endpoint (Controller)  At CommentController.java:[lines 35-37]

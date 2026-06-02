@@ -1,0 +1,4 @@
+L S SECSC: com.example.productsearch.controller.ProductController is a Spring endpoint (Controller)  At ProductController.java:[lines 22-23]
+L S SECSC: com.example.productsearch.controller.ProductController is a Spring endpoint (Controller)  At ProductController.java:[line 28]
+M S SECELEAK: Unexpected property could be leaked because a persistence class is directly exposed to the client  At ProductController.java:[lines 22-23]
+M S SECELEAK: Unexpected property could be leaked because a persistence class is directly exposed to the client  At ProductController.java:[line 28]

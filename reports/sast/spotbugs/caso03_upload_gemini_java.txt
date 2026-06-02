@@ -1,0 +1,4 @@
+M S SECPTI: This API (java/nio/file/Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;) reads a file whose location might be specified by user input  At FileController.java:[line 42]
+L S SECSC: com.example.fileapp.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 36-53]
+L S SECSC: com.example.fileapp.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 59-68]
+L S SECSC: com.example.fileapp.controller.FileController is a Spring endpoint (Controller)  At FileController.java:[lines 75-86]

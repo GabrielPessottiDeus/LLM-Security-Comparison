@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Busca</title>
+</head>
+<body>
+    <h1>Resultados da Busca por: <span th:text="${query}">termo</span></h1>
+    
+    <ul>
+        <li th:each="comment : ${comments}">
+            <strong th:text="${comment.author}">Autor</strong>
+            <span th:text="'em ' + ${#temporals.format(comment.createdAt, 'dd/MM/yyyy HH:mm')}">Data</span>
+            <p th:text="${comment.content}">Texto do comentário</p>
+        </li>
+    </ul>
+
+    <p th:if="${#lists.isEmpty(comments)}">Nenhum comentário encontrado para o termo buscado.</p>
+
+    <br>
+    <a href="/">Voltar para a página principal</a>
+</body>
+</html>

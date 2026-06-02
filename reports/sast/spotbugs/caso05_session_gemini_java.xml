@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="4.8.6" sequence="0" timestamp="1779813077489" analysisTimestamp="1779813080465" release="">
+  <Project projectName="">
+    <Jar>codigos/caso05_session/gemini/java/target/classes</Jar>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.2.5/spring-boot-starter-web-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter/3.2.5/spring-boot-starter-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot/3.2.5/spring-boot-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.2.5/spring-boot-autoconfigure-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.2.5/spring-boot-starter-logging-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/ch/qos/logback/logback-classic/1.4.14/logback-classic-1.4.14.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/ch/qos/logback/logback-core/1.4.14/logback-core-1.4.14.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.21.1/log4j-to-slf4j-2.21.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/logging/log4j/log4j-api/2.21.1/log4j-api-2.21.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-core/6.1.6/spring-core-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-jcl/6.1.6/spring-jcl-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.2.5/spring-boot-starter-json-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.15.4/jackson-databind-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.15.4/jackson-annotations-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.15.4/jackson-core-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.15.4/jackson-datatype-jdk8-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.4/jackson-datatype-jsr310-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.15.4/jackson-module-parameter-names-2.15.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.2.5/spring-boot-starter-tomcat-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.20/tomcat-embed-core-10.1.20.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.20/tomcat-embed-el-10.1.20.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.20/tomcat-embed-websocket-10.1.20.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-web/6.1.6/spring-web-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-beans/6.1.6/spring-beans-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/io/micrometer/micrometer-observation/1.12.5/micrometer-observation-1.12.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/io/micrometer/micrometer-commons/1.12.5/micrometer-commons-1.12.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-webmvc/6.1.6/spring-webmvc-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-context/6.1.6/spring-context-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-expression/6.1.6/spring-expression-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.2.5/spring-boot-starter-security-3.2.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/spring-aop/6.1.6/spring-aop-6.1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/security/spring-security-config/6.2.4/spring-security-config-6.2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/security/spring-security-core/6.2.4/spring-security-core-6.2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/security/spring-security-crypto/6.2.4/spring-security-crypto-6.2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/org/springframework/security/spring-security-web/6.2.4/spring-security-web-6.2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/gabriel/.m2/repository/com/mysql/mysql-connector-j/8.3.0/mysql-connector-j-8.3.0.jar</AuxClasspathEntry>
+    <Plugin id="com.h3xstream.findsecbugs" enabled="true"/>
+  </Project>
+  <BugInstance type="HARD_CODE_PASSWORD" priority="2" rank="12" abbrev="SECHCP" category="SECURITY">
+    <Class classname="com.exemplo.app.config.SecurityConfig" classAnnotationNames="org.springframework.context.annotation.Configuration,org.springframework.security.config.annotation.web.configuration.EnableWebSecurity">
+      <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="23" end="63" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.config.SecurityConfig" name="userDetailsService" signature="()Lorg/springframework/security/core/userdetails/UserDetailsService;" isStatic="false" classAnnotationNames="org.springframework.context.annotation.Configuration,org.springframework.security.config.annotation.web.configuration.EnableWebSecurity">
+      <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="46" end="51" startBytecode="0" endBytecode="116" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+    </Method>
+    <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="48" end="48" startBytecode="10" endBytecode="10" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+    <String value="org/springframework/security/core/userdetails/User$UserBuilder.password(Ljava/lang/String;)Lorg/springframework/security/core/userdetails/User$UserBuilder;" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_PROTECTION_DISABLED" priority="1" rank="10" abbrev="SECSPRCSRFPD" category="SECURITY">
+    <Class classname="com.exemplo.app.config.SecurityConfig" classAnnotationNames="org.springframework.context.annotation.Configuration,org.springframework.security.config.annotation.web.configuration.EnableWebSecurity">
+      <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="23" end="63" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.config.SecurityConfig" name="lambda$securityFilterChain$0" signature="(Lorg/springframework/security/config/annotation/web/configurers/CsrfConfigurer;)V" isStatic="true" classAnnotationNames="org.springframework.context.annotation.Configuration,org.springframework.security.config.annotation.web.configuration.EnableWebSecurity">
+      <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="28" end="28" startBytecode="0" endBytecode="47" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+    </Method>
+    <SourceLine classname="com.exemplo.app.config.SecurityConfig" start="28" end="28" startBytecode="1" endBytecode="1" sourcefile="SecurityConfig.java" sourcepath="com/exemplo/app/config/SecurityConfig.java"/>
+  </BugInstance>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.exemplo.app.controller.AppController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AppController" start="11" end="23" sourcefile="AppController.java" sourcepath="com/exemplo/app/controller/AppController.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.controller.AppController" name="admin" signature="()Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AppController" start="23" end="23" startBytecode="0" endBytecode="52" sourcefile="AppController.java" sourcepath="com/exemplo/app/controller/AppController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.exemplo.app.controller.AppController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AppController" start="11" end="23" sourcefile="AppController.java" sourcepath="com/exemplo/app/controller/AppController.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.controller.AppController" name="profile" signature="(Lorg/springframework/security/core/Authentication;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AppController" start="15" end="15" startBytecode="0" endBytecode="104" sourcefile="AppController.java" sourcepath="com/exemplo/app/controller/AppController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.exemplo.app.controller.AuthController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AuthController" start="28" end="60" sourcefile="AuthController.java" sourcepath="com/exemplo/app/controller/AuthController.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.controller.AuthController" name="login" signature="(Lcom/exemplo/app/dto/LoginRequest;Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AuthController" start="38" end="49" startBytecode="0" endBytecode="275" sourcefile="AuthController.java" sourcepath="com/exemplo/app/controller/AuthController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_ENDPOINT" priority="3" rank="15" abbrev="SECSC" category="SECURITY">
+    <Class classname="com.exemplo.app.controller.AuthController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AuthController" start="28" end="60" sourcefile="AuthController.java" sourcepath="com/exemplo/app/controller/AuthController.java"/>
+    </Class>
+    <Method classname="com.exemplo.app.controller.AuthController" name="logout" signature="(Ljakarta/servlet/http/HttpServletRequest;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="com.exemplo.app.controller.AuthController" start="55" end="60" startBytecode="0" endBytecode="123" sourcefile="AuthController.java" sourcepath="com/exemplo/app/controller/AuthController.java"/>
+    </Method>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Tue, 26 May 2026 13:31:17 -0300" total_classes="5" referenced_classes="78" total_bugs="6" total_size="88" num_packages="4" java_version="21.0.11" vm_version="21.0.11+10" cpu_seconds="6.51" clock_seconds="1.47" peak_mbytes="226.42" alloc_mbytes="768.00" gc_seconds="0.03" priority_3="4" priority_2="1" priority_1="1">
+    <PackageStats package="com.exemplo.app" total_bugs="0" total_types="1" total_size="6">
+      <ClassStats class="com.exemplo.app.SessaoAuthApplication" sourceFile="SessaoAuthApplication.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.exemplo.app.config" total_bugs="2" total_types="1" total_size="33" priority_2="1" priority_1="1">
+      <ClassStats class="com.exemplo.app.config.SecurityConfig" sourceFile="SecurityConfig.java" interface="false" size="33" bugs="2" priority_2="1" priority_1="1"/>
+    </PackageStats>
+    <PackageStats package="com.exemplo.app.controller" total_bugs="4" total_types="2" total_size="36" priority_3="4">
+      <ClassStats class="com.exemplo.app.controller.AppController" sourceFile="AppController.java" interface="false" size="9" bugs="2" priority_3="2"/>
+      <ClassStats class="com.exemplo.app.controller.AuthController" sourceFile="AuthController.java" interface="false" size="27" bugs="2" priority_3="2"/>
+    </PackageStats>
+    <PackageStats package="com.exemplo.app.dto" total_bugs="0" total_types="1" total_size="13">
+      <ClassStats class="com.exemplo.app.dto.LoginRequest" sourceFile="LoginRequest.java" interface="false" size="13" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="317" invocations="919" avgMicrosecondsPerInvocation="345" maxMicrosecondsPerInvocation="7385" standardDeviationMicrosecondsPerInvocation="704"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="112" invocations="924" avgMicrosecondsPerInvocation="122" maxMicrosecondsPerInvocation="15440" standardDeviationMicrosecondsPerInvocation="646"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="85" invocations="78" avgMicrosecondsPerInvocation="1101" maxMicrosecondsPerInvocation="10102" standardDeviationMicrosecondsPerInvocation="2078"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="61" invocations="78" avgMicrosecondsPerInvocation="784" maxMicrosecondsPerInvocation="5812" standardDeviationMicrosecondsPerInvocation="1253"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="41" invocations="143" avgMicrosecondsPerInvocation="292" maxMicrosecondsPerInvocation="2495" standardDeviationMicrosecondsPerInvocation="364"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="38" invocations="153" avgMicrosecondsPerInvocation="252" maxMicrosecondsPerInvocation="9682" standardDeviationMicrosecondsPerInvocation="865"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="30" invocations="876" avgMicrosecondsPerInvocation="35" maxMicrosecondsPerInvocation="696" standardDeviationMicrosecondsPerInvocation="64"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="27" invocations="78" avgMicrosecondsPerInvocation="353" maxMicrosecondsPerInvocation="5313" standardDeviationMicrosecondsPerInvocation="742"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="25" invocations="78" avgMicrosecondsPerInvocation="328" maxMicrosecondsPerInvocation="3925" standardDeviationMicrosecondsPerInvocation="674"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="20" invocations="23" avgMicrosecondsPerInvocation="907" maxMicrosecondsPerInvocation="15824" standardDeviationMicrosecondsPerInvocation="3202"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="17" invocations="78" avgMicrosecondsPerInvocation="221" maxMicrosecondsPerInvocation="1319" standardDeviationMicrosecondsPerInvocation="320"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="17" invocations="78" avgMicrosecondsPerInvocation="218" maxMicrosecondsPerInvocation="1869" standardDeviationMicrosecondsPerInvocation="405"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="16" invocations="78" avgMicrosecondsPerInvocation="208" maxMicrosecondsPerInvocation="5383" standardDeviationMicrosecondsPerInvocation="642"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="14" invocations="78" avgMicrosecondsPerInvocation="187" maxMicrosecondsPerInvocation="3623" standardDeviationMicrosecondsPerInvocation="482"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="13" invocations="23" avgMicrosecondsPerInvocation="592" maxMicrosecondsPerInvocation="5969" standardDeviationMicrosecondsPerInvocation="1224"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

@@ -1,0 +1,17 @@
+{
+  "name": "caso01-auth",
+  "version": "1.0.0",
+  "description": "User authentication API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "bcrypt": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

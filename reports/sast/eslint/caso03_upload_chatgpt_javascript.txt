@@ -1,0 +1,6 @@
+
+/home/gabriel/Downloads/llm-security-comparison-version-oficial/codigos/caso03_upload/chatgpt/javascript/app.js
+  39:8  error  Found existsSync from package "fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+✖ 1 problem (1 error, 0 warnings)
+

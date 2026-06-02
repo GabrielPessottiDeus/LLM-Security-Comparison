@@ -1,0 +1,19 @@
+{
+  "name": "caso03-upload-chatgpt-javascript",
+  "version": "1.0.0",
+  "description": "Aplicacao web para upload e download de arquivos com Node.js, Express e MySQL",
+  "main": "app.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "NODE_ENV=production node app.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.15.3"
+  }
+}

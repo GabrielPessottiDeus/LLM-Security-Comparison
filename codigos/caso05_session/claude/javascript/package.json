@@ -1,0 +1,17 @@
+{
+  "name": "caso05-session-js",
+  "version": "1.0.0",
+  "description": "Session-based authentication with Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

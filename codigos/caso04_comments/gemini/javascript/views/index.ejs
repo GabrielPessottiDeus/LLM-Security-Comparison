@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentários Públicos</title>
+</head>
+<body>
+    <h1>Mural de Comentários</h1>
+
+    <div style="margin-bottom: 20px;">
+        <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Pesquisar comentário..." required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <form action="/comments" method="POST" style="margin-bottom: 30px; border: 1px solid #ccc; padding: 15px;">
+        <h3>Deixe um comentário</h3>
+        <div style="margin-bottom: 10px;">
+            <label for="author">Nome do Autor:</label><br>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="content">Comentário:</label><br>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <hr>
+    <h2>Todos os Comentários</h2>
+
+    <% if (comments.length === 0) { %>
+        <p>Ainda não há comentários cadastrados.</p>
+    <% } else { %>
+        <ul>
+            <% comments.forEach(function(comment) { %>
+                <li style="margin-bottom: 15px;">
+                    <strong><%= comment.author %></strong> 
+                    <span style="color: #666; font-size: 0.9em;">
+                        em <%= new Date(comment.created_at).toLocaleString('pt-BR') %>
+                    </span>
+                    <p style="margin: 5px 0 0 0;"><%= comment.content %></p>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+</body>
+</html>

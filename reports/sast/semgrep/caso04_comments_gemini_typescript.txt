@@ -1,0 +1,57 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 5 files tracked by git with 2606 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      42       5          Pro rules    1888                                                                
+  json              3       2          Community     718                                                                
+  ts              330       1                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 3 (3 blocking)
+ • Rules run: 375
+ • Targets scanned: 5
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 375 rules on 5 files: 3 findings.
+                   
+                   
+┌─────────────────┐
+│ 3 Code Findings │
+└─────────────────┘
+                                                          
+    codigos/caso04_comments/gemini/typescript/src/index.ts
+   ❯❯❯❱ javascript.express.mysql.express-mysql-sqli.express-mysql-sqli
+          ❰❰ Blocking ❱❱
+          Untrusted input might be used to build a database query, which can lead to a SQL injection         
+          vulnerability. An attacker can execute malicious SQL statements and gain unauthorized access to    
+          sensitive data, modify, delete data, or execute arbitrary system commands. To prevent this         
+          vulnerability, use prepared statements that do not concatenate user-controllable strings and use   
+          parameterized queries where SQL commands and user data are strictly separated. Also, consider using
+          an object-relational (ORM) framework to operate with safer abstractions.                           
+          Details: https://sg.run/306W                                                                       
+                                                                                                             
+          102┆ await pool.query('INSERT INTO comments (author, content) VALUES (?, ?)', [author,
+               content]);                                                                       
+            ⋮┆----------------------------------------
+          113┆ const [rows] = await pool.query('SELECT author, content FROM comments WHERE content LIKE ?
+               ORDER BY created_at DESC', [`%${q}%`]);                                                   
+   
+    ❯❱ javascript.express.security.audit.xss.direct-response-write.direct-response-write
+          ❰❰ Blocking ❱❱
+          Detected directly writing to a Response object from user-defined input. This bypasses any HTML      
+          escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use
+          'resp.render()' to render safely escaped HTML.                                                      
+          Details: https://sg.run/vzGl                                                                        
+                                                                                                              
+          114┆ res.send(renderSearchPage(q, rows as any[]));
+

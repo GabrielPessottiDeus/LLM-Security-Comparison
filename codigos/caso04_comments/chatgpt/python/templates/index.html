@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentários Públicos</title>
+  <style>
+    body { font-family: sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+    form { display: grid; gap: 0.75rem; margin-bottom: 1.5rem; }
+    input, textarea, button { font-size: 1rem; padding: 0.6rem; }
+    textarea { min-height: 120px; resize: vertical; }
+    ul { list-style: none; padding: 0; }
+    li { border: 1px solid #ddd; border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
+    .meta { color: #333; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Comentários Públicos</h1>
+
+  <form method="post" action="/comments">
+    <label for="author">Nome do autor</label>
+    <input id="author" name="author" type="text" required maxlength="255">
+
+    <label for="content">Comentário</label>
+    <textarea id="content" name="content" required></textarea>
+
+    <button type="submit">Enviar comentário</button>
+  </form>
+
+  <form method="get" action="/search">
+    <label for="q">Buscar por termo no comentário</label>
+    <input id="q" name="q" type="text" placeholder="Digite um termo">
+    <button type="submit">Buscar</button>
+  </form>
+
+  <h2>Lista de comentários</h2>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        <div class="meta"><strong>{{ comment.author }}</strong> - {{ comment.created_at }}</div>
+        <div>{{ comment.content }}</div>
+      </li>
+    {% else %}
+      <li>Nenhum comentário cadastrado.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

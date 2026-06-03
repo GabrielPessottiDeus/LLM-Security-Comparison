@@ -47,8 +47,6 @@ bash scripts/setup_fedora.sh
 bash scripts/start_mysql.sh
 ```
 
-A partir daqui você só repete o ciclo de teste.
-
 ## Credenciais e portas
 
 **MySQL:**
@@ -127,19 +125,14 @@ bash scripts/run_app_node.sh   codigos/caso01_auth/chatgpt/typescript
 Em outro terminal, rode o ZAP contra a porta dela:
 
 ```bash
-# Baseline scan (rápido, ~1 min, passivo)
+# Baseline scan (mais rápido)
 bash scripts/run_zap.sh 1 baseline chatgpt_python
 
-# Full scan (mais demorado, spider + active scan)
+# Full scan (mais demorado, mais completo)
 bash scripts/run_zap.sh 1 full chatgpt_python
 ```
 
 Relatórios em `reports/dast/zap_<tipo>_porta<P>_<tag>_<timestamp>.{html,json,xml}`
-
-Para abrir o HTML:
-```bash
-xdg-open reports/dast/zap_baseline_porta8001_chatgpt_python_*.html
-```
 
 ### 5. Resetar entre testes (opcional)
 

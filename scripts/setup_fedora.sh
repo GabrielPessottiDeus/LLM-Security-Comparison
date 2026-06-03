@@ -1,20 +1,14 @@
-#!/usr/bin/env bash
 # ============================================================================
-# setup_fedora.sh  (v2 — idempotente)
+# setup_fedora.sh
 #
 # Instala tudo o que é necessário no Fedora para:
 #   - Rodar as aplicações geradas pelas LLMs (Python, Java, Node)
 #   - Rodar as ferramentas SAST localmente (Bandit, Semgrep, SpotBugs, ESLint)
 #   - Rodar Docker (para MySQL e OWASP ZAP)
 #
-# Mudanças nesta versão:
-#   - Tolera pacotes já instalados (não aborta o script)
-#   - Detecta o JDK disponível em vez de exigir java-17-openjdk
-#   - Pode ser rodado várias vezes sem problema
-#
 # Uso:  bash scripts/setup_fedora.sh
 # ============================================================================
-set -uo pipefail   # removido o -e proposital: queremos continuar mesmo se um passo falhar
+set -uo pipefail
 
 GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 log()  { echo -e "${GREEN}[setup]${NC} $*"; }
@@ -26,7 +20,6 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-# Instala um pacote só se ele não estiver instalado. Não falha se faltar.
 dnf_install_if_missing() {
     local pkg="$1"
     if rpm -q "$pkg" &>/dev/null; then
@@ -43,9 +36,7 @@ dnf_install_if_missing() {
 log "==> Atualizando metadados do dnf..."
 sudo dnf -y makecache >/dev/null 2>&1 || warn "makecache falhou (continuando)"
 
-# ----------------------------------------------------------------------------
-# 1) Ferramentas base
-# ----------------------------------------------------------------------------
+
 log "==> Instalando ferramentas base..."
 for pkg in git curl wget jq unzip tar which gcc gcc-c++ make \
            python3 python3-pip python3-virtualenv \
@@ -53,16 +44,13 @@ for pkg in git curl wget jq unzip tar which gcc gcc-c++ make \
     dnf_install_if_missing "$pkg"
 done
 
-# ----------------------------------------------------------------------------
-# 2) JDK — tenta 17 primeiro; se não houver, aceita qualquer JDK instalado
-# ----------------------------------------------------------------------------
+
 log "==> Verificando JDK..."
 if command -v javac &>/dev/null; then
     JDK_VERSION="$(javac -version 2>&1 | awk '{print $2}')"
     log "  JDK já presente: $JDK_VERSION ($(which javac))"
 else
     log "  Nenhum JDK detectado. Tentando instalar..."
-    # Tenta nesta ordem: 17 (Spring Boot 3 oficial), 21 (LTS), latest
     for jdk_pkg in java-17-openjdk-devel java-21-openjdk-devel java-latest-openjdk-devel; do
         if sudo dnf -y install "$jdk_pkg" &>/dev/null; then
             log "  instalado: $jdk_pkg"
@@ -75,9 +63,6 @@ else
     fi
 fi
 
-# ----------------------------------------------------------------------------
-# 3) Docker
-# ----------------------------------------------------------------------------
 if ! command -v docker &>/dev/null; then
     log "==> Instalando Docker (repositório oficial)..."
     sudo dnf -y install dnf-plugins-core || true
@@ -88,20 +73,15 @@ if ! command -v docker &>/dev/null; then
     warn "Você foi adicionado ao grupo 'docker'. Faça LOGOUT/LOGIN (ou rode 'newgrp docker') antes de continuar."
 else
     log "==> Docker já instalado: $(docker --version)"
-    # Garante que o serviço está rodando
     if ! systemctl is-active --quiet docker; then
         sudo systemctl start docker || warn "falha ao iniciar serviço docker"
     fi
-    # Garante que o usuário está no grupo
     if ! groups | grep -q docker; then
         sudo usermod -aG docker "$USER" || true
         warn "Você foi adicionado ao grupo 'docker'. Faça LOGOUT/LOGIN ou rode 'newgrp docker'."
     fi
 fi
 
-# ----------------------------------------------------------------------------
-# 4) Python tools (Bandit + Semgrep)
-# ----------------------------------------------------------------------------
 log "==> Verificando Bandit e Semgrep..."
 if ! command -v pipx &>/dev/null; then
     log "  Instalando pipx..."
@@ -125,14 +105,10 @@ else
     log "  semgrep já instalado: $(semgrep --version)"
 fi
 
-# ----------------------------------------------------------------------------
-# 5) SpotBugs + find-sec-bugs
-# ----------------------------------------------------------------------------
 SPOTBUGS_VERSION="4.8.6"
 FINDSECBUGS_VERSION="1.14.0"
 SPOTBUGS_HOME="$HOME/tools/spotbugs-${SPOTBUGS_VERSION}"
 
-# Salva diretório atual para voltar depois (cd /tmp quebrava caminhos relativos)
 SETUP_CWD="$(pwd)"
 
 if [[ ! -x "$SPOTBUGS_HOME/bin/spotbugs" ]]; then
@@ -154,12 +130,10 @@ else
 fi
 
 FINDSECBUGS_JAR="$SPOTBUGS_HOME/plugin/findsecbugs-plugin.jar"
-# Remove jar antigo se vazio (de tentativas anteriores que falharam)
 [[ -f "$FINDSECBUGS_JAR" && ! -s "$FINDSECBUGS_JAR" ]] && rm -f "$FINDSECBUGS_JAR"
 
 if [[ ! -f "$FINDSECBUGS_JAR" && -d "$SPOTBUGS_HOME/plugin" ]]; then
     log "==> Baixando plugin find-sec-bugs ${FINDSECBUGS_VERSION} do Maven Central..."
-    # URL do Maven Central (releases do GitHub não incluem o JAR pronto a partir da 1.12)
     if curl -fL -o "$FINDSECBUGS_JAR" \
         "https://repo1.maven.org/maven2/com/h3xstream/findsecbugs/findsecbugs-plugin/${FINDSECBUGS_VERSION}/findsecbugs-plugin-${FINDSECBUGS_VERSION}.jar"; then
         log "  find-sec-bugs instalado"
@@ -170,10 +144,8 @@ elif [[ -f "$FINDSECBUGS_JAR" ]]; then
     log "==> find-sec-bugs já instalado"
 fi
 
-# Volta para o diretório original do projeto antes dos próximos passos
 cd "$SETUP_CWD"
 
-# PATH no ~/.bashrc
 if [[ -d "$SPOTBUGS_HOME/bin" ]] && ! grep -q "spotbugs-${SPOTBUGS_VERSION}/bin" "$HOME/.bashrc" 2>/dev/null; then
     {
         echo ""
@@ -186,9 +158,6 @@ fi
 export SPOTBUGS_HOME="$SPOTBUGS_HOME"
 export PATH="$SPOTBUGS_HOME/bin:$PATH"
 
-# ----------------------------------------------------------------------------
-# 6) ESLint + plugins
-# ----------------------------------------------------------------------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
@@ -200,9 +169,6 @@ else
     log "==> ESLint já instalado em sast-configs/node_modules"
 fi
 
-# ----------------------------------------------------------------------------
-# 7) Resumo
-# ----------------------------------------------------------------------------
 echo
 log "==> Versões instaladas:"
 echo

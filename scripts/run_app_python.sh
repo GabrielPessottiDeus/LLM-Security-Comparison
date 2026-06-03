@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_app_python.sh — sobe um app Python/Flask de uma pasta de código.
 #
@@ -19,9 +18,6 @@ TARGET="${1:-}"
 [[ -z "$TARGET" ]] && { echo "Uso: bash scripts/run_app_python.sh <pasta>"; exit 1; }
 [[ ! -d "$TARGET" ]] && { echo "Pasta inexistente: $TARGET"; exit 1; }
 
-# ----------------------------------------------------------------------------
-# 1) Detecta o caso pelo caminho e exporta as credenciais do banco
-# ----------------------------------------------------------------------------
 TARGET_ABS="$(cd "$TARGET" && pwd)"
 CASE_DIR_NAME=""
 for part in $(echo "$TARGET_ABS" | tr '/' '\n'); do
@@ -45,28 +41,19 @@ fi
 
 cd "$TARGET"
 
-# ----------------------------------------------------------------------------
-# 2) venv isolado
-# ----------------------------------------------------------------------------
 if [[ ! -d .venv ]]; then
     echo "[py] Criando venv..."
     python3 -m venv .venv
 fi
-# shellcheck disable=SC1091
+
 source .venv/bin/activate
 
-# ----------------------------------------------------------------------------
-# 3) Dependências
-# ----------------------------------------------------------------------------
 if [[ -f requirements.txt ]]; then
     echo "[py] Instalando dependências..."
     pip install --quiet --upgrade pip
     pip install --quiet -r requirements.txt
 fi
 
-# ----------------------------------------------------------------------------
-# 4) Detecta entry point e roda
-# ----------------------------------------------------------------------------
 ENTRY=""
 for cand in app.py main.py server.py run.py wsgi.py; do
     [[ -f "$cand" ]] && { ENTRY="$cand"; break; }

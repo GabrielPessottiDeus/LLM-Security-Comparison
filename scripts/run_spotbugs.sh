@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_spotbugs.sh — analisa código Java com SpotBugs + find-sec-bugs
 #
@@ -23,7 +22,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Detecta Java 21 (preferido). SpotBugs 4.8.6 não analisa bytecode do Java 25.
 JAVA21_HOME="$(ls -d /usr/lib/jvm/java-21-openjdk* 2>/dev/null | head -1 || true)"
 if [[ -n "$JAVA21_HOME" && -x "$JAVA21_HOME/bin/java" ]]; then
     export JAVA_HOME="$JAVA21_HOME"
@@ -35,7 +33,6 @@ else
     echo "[spotbugs] Instale: sudo dnf install -y java-21-openjdk-devel"
 fi
 
-# SpotBugs home
 if [[ -z "${SPOTBUGS_HOME:-}" ]]; then
     SPOTBUGS_HOME="$(ls -d "$HOME"/tools/spotbugs-* 2>/dev/null | sort -V | tail -1 || true)"
 fi
@@ -60,9 +57,6 @@ if [[ ! -f "$TARGET/pom.xml" ]]; then
     exit 0
 fi
 
-# ----------------------------------------------------------------------------
-# 1) Compila o projeto (clean garante bytecode consistente com Java 21)
-# ----------------------------------------------------------------------------
 echo "[spotbugs] Compilando projeto (mvn clean compile)..."
 (cd "$TARGET" && mvn -q clean compile)
 
@@ -72,15 +66,6 @@ if [[ ! -d "$CLASSES_DIR" ]]; then
     exit 1
 fi
 
-# ----------------------------------------------------------------------------
-# 2) Resolve auxClasspath via maven-dependency-plugin
-#
-# O maven-dependency-plugin:build-classpath gera uma string com todos os JARs
-# de dependências resolvidas pelo Maven (Spring, Hibernate, MySQL connector,
-# BCrypt, Jackson, Tomcat embarcado, etc.). Passando isso como -auxclasspath,
-# o SpotBugs consegue resolver tipos do Spring e fazer análises mais profundas
-# (especialmente taint tracking para SQL injection, XSS, etc.).
-# ----------------------------------------------------------------------------
 echo "[spotbugs] Resolvendo classpath de dependências (Spring, etc.)..."
 CLASSPATH_FILE="$(mktemp)"
 (cd "$TARGET" && mvn -q dependency:build-classpath \
@@ -97,15 +82,11 @@ else
 fi
 rm -f "$CLASSPATH_FILE"
 
-# ----------------------------------------------------------------------------
-# 3) Roda SpotBugs com auxClasspath
-# ----------------------------------------------------------------------------
 echo "[spotbugs] Analisando bytecode em $CLASSES_DIR ..."
 
 AUX_FLAG=""
 [[ -n "$AUX_CLASSPATH" ]] && AUX_FLAG="-auxclasspath $AUX_CLASSPATH"
 
-# Versão XML (para o agregador)
 "$SPOTBUGS_HOME/bin/spotbugs" \
     -textui \
     -effort:max \
@@ -117,7 +98,6 @@ AUX_FLAG=""
     -output "$OUT_DIR/${REPORT_NAME}.xml" \
     "$CLASSES_DIR" 2>&1 | grep -v "DetectorFactoryCollection\|already registered factory\|WARNING:" || true
 
-# Versão TXT (legível por humano) — captura sem o ruído dos warnings de plugin
 "$SPOTBUGS_HOME/bin/spotbugs" \
     -textui \
     -effort:max \
@@ -127,7 +107,6 @@ AUX_FLAG=""
     $AUX_FLAG \
     "$CLASSES_DIR" 2>&1 | grep -v "DetectorFactoryCollection\|already registered factory\|May.*PM\|WARNING:" > "$OUT_DIR/${REPORT_NAME}.txt" || true
 
-# Conta achados
 BUG_COUNT=$(grep -c "^[HML] [A-Z]" "$OUT_DIR/${REPORT_NAME}.txt" 2>/dev/null || echo 0)
 
 echo

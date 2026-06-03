@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_bandit.sh — analisa código Python com Bandit
 #
@@ -19,14 +18,11 @@ if [[ -z "$TARGET" ]]; then
 fi
 [[ ! -d "$TARGET" ]] && { echo "Diretório não existe: $TARGET"; exit 1; }
 
-# Nome do relatório derivado do caminho (ex: caso01_auth_claude_python)
 REPORT_NAME="${2:-$(echo "$TARGET" | sed -E 's|^codigos/||;s|/|_|g')}"
 OUT_DIR="$ROOT/reports/sast/bandit"
 mkdir -p "$OUT_DIR"
 
 echo "[bandit] Analisando $TARGET ..."
-# -r recursivo, -ll/-ii nível mínimo low (captura tudo), formatos JSON e TXT
-# Não falhamos o script quando encontra vulnerabilidades (exit code != 0)
 bandit -r "$TARGET" \
     -ll -ii \
     -f json -o "$OUT_DIR/${REPORT_NAME}.json" \

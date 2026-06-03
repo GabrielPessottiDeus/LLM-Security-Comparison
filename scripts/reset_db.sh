@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Reseta os dados de um caso específico (drop + recreate do banco).
 # Útil quando se troca de IA/linguagem testada para garantir estado limpo.
 #

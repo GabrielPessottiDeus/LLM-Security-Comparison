@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_all_sast.sh — varre TODOS os códigos colados em codigos/ e roda
 # automaticamente a ferramenta SAST apropriada para cada linguagem.
@@ -17,13 +16,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$ROOT"
 
-# Confere existência dos scripts e ferramentas
 for s in run_bandit.sh run_semgrep.sh run_spotbugs.sh run_eslint.sh; do
     [[ -f "scripts/$s" ]] || { echo "Faltando scripts/$s"; exit 1; }
 done
 
 has_code() {
-    # Retorna 0 se há pelo menos 1 arquivo (não vazio) no diretório
     local dir="$1"
     [[ -d "$dir" ]] || return 1
     find "$dir" -maxdepth 3 -type f \

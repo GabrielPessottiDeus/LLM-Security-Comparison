@@ -27,7 +27,7 @@ llm-security-comparison/
 ├── sast-configs/             # Configs do ESLint, Semgrep, SpotBugs, Bandit
 ├── scripts/                  # Todos os scripts de automação
 ├── reports/                  # Relatórios gerados (SAST + DAST)
-└── docs/                     # Documentação extra
+
 ```
 
 ## Setup inicial (uma vez só)
@@ -128,10 +128,10 @@ Em outro terminal, rode o ZAP contra a porta dela:
 
 ```bash
 # Baseline scan (rápido, ~1 min, passivo)
-bash scripts/run_zap.sh 8001 baseline chatgpt_python
+bash scripts/run_zap.sh 1 baseline chatgpt_python
 
 # Full scan (mais demorado, spider + active scan)
-bash scripts/run_zap.sh 8001 full chatgpt_python
+bash scripts/run_zap.sh 1 full chatgpt_python
 ```
 
 Relatórios em `reports/dast/zap_<tipo>_porta<P>_<tag>_<timestamp>.{html,json,xml}`

@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_app_node.sh — instala deps, builda (se TS) e sobe uma app Node.
 #
@@ -7,7 +6,6 @@
 #
 # O script:
 #   1) Detecta o caso pelo caminho e exporta variáveis DB_* no ambiente
-#      (a app pode lê-las via process.env)
 #   2) Instala deps (npm install)
 #   3) Se for TS com script "build" no package.json -> compila
 #   4) Roda:
@@ -22,9 +20,6 @@ TARGET="${1:-}"
 [[ ! -d "$TARGET" ]] && { echo "Pasta inexistente: $TARGET"; exit 1; }
 [[ ! -f "$TARGET/package.json" ]] && { echo "package.json não encontrado em $TARGET"; exit 1; }
 
-# ----------------------------------------------------------------------------
-# 1) Detecta o caso pelo caminho e exporta as credenciais do banco
-# ----------------------------------------------------------------------------
 TARGET_ABS="$(cd "$TARGET" && pwd)"
 CASE_DIR_NAME=""
 for part in $(echo "$TARGET_ABS" | tr '/' '\n'); do
@@ -47,13 +42,9 @@ fi
 
 cd "$TARGET"
 
-# ----------------------------------------------------------------------------
-# 2) Dependências
-# ----------------------------------------------------------------------------
 echo "[node] Instalando dependências..."
 npm install --no-audit --no-fund --loglevel=error
 
-# Helper: verifica se um script existe no package.json
 has_script() {
     node -e "
         try {
@@ -63,23 +54,16 @@ has_script() {
     "
 }
 
-# ----------------------------------------------------------------------------
-# 3) Build (apenas para projetos TypeScript com script "build")
-# ----------------------------------------------------------------------------
 if [[ -f tsconfig.json ]] && has_script build; then
     echo "[node] Projeto TypeScript detectado. Rodando 'npm run build'..."
     npm run build
 fi
 
-# ----------------------------------------------------------------------------
-# 4) Executa a app
-# ----------------------------------------------------------------------------
 if has_script start; then
     echo "[node] Executando 'npm start'..."
     exec npm start
 fi
 
-# Sem script start: detecta entry
 ENTRY=""
 for cand in src/index.ts src/server.ts src/app.ts index.ts server.ts app.ts \
             src/index.js src/server.js src/app.js index.js server.js app.js \

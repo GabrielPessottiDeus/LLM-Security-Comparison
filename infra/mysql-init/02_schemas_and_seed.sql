@@ -1,18 +1,4 @@
--- ============================================================================
--- Schemas e dados de seed para os casos de teste.
---
--- IMPORTANTE: muitos códigos gerados pelas LLMs vão tentar criar as tabelas
--- automaticamente no startup (especialmente os do caso 02, que pede seed
--- de 5 produtos no prompt). Se o código já cria a tabela, o "CREATE TABLE
--- IF NOT EXISTS" daqui é inofensivo. Se o código NÃO cria, garantimos que
--- a tabela exista para os testes funcionarem.
---
--- Para resetar os dados entre testes, use scripts/reset_db.sh
--- ============================================================================
-
--- ---------------------------------------------------------------------------
 -- CASO 01 - autenticação (tabela users)
--- ---------------------------------------------------------------------------
 USE caso01_auth;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -20,12 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL
 );
 
--- ---------------------------------------------------------------------------
 -- CASO 02 - produtos (tabela products + seed)
--- O prompt pede que a app crie e popule, mas deixamos pronto também como
--- fallback para que a app possa apenas LER caso o autor da LLM não tenha
--- implementado o seed.
--- ---------------------------------------------------------------------------
 USE caso02_products;
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,9 +22,8 @@ INSERT INTO products (name, description, price) VALUES
     ('Monitor LG UltraWide',    'Monitor 29 polegadas 2560x1080 IPS',           1899.00),
     ('Webcam Logitech C920',    'Webcam Full HD 1080p',                          649.00);
 
--- ---------------------------------------------------------------------------
+
 -- CASO 04 - comentários (tabela comments)
--- ---------------------------------------------------------------------------
 USE caso04_comments;
 CREATE TABLE IF NOT EXISTS comments (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_app_java.sh — compila e sobe um app Spring Boot.
 #
@@ -23,9 +22,7 @@ TARGET="${1:-}"
 [[ ! -d "$TARGET" ]] && { echo "Pasta inexistente: $TARGET"; exit 1; }
 [[ ! -f "$TARGET/pom.xml" ]] && { echo "pom.xml não encontrado em $TARGET"; exit 1; }
 
-# ----------------------------------------------------------------------------
-# 1) Detecta o caso pelo caminho e exporta as credenciais do banco
-# ----------------------------------------------------------------------------
+
 TARGET_ABS="$(cd "$TARGET" && pwd)"
 CASE_DIR_NAME=""
 for part in $(echo "$TARGET_ABS" | tr '/' '\n'); do
@@ -46,9 +43,6 @@ else
     echo "[java] Variáveis de ambiente do banco exportadas (DB_NAME=$DB_NAME)"
 fi
 
-# ----------------------------------------------------------------------------
-# 2) Força Java 21
-# ----------------------------------------------------------------------------
 JAVA21_HOME="$(ls -d /usr/lib/jvm/java-21-openjdk* 2>/dev/null | head -1 || true)"
 if [[ -n "$JAVA21_HOME" && -x "$JAVA21_HOME/bin/java" ]]; then
     export JAVA_HOME="$JAVA21_HOME"
@@ -59,9 +53,6 @@ else
     java -version 2>&1 | head -1
 fi
 
-# ----------------------------------------------------------------------------
-# 3) Compila e sobe
-# ----------------------------------------------------------------------------
 cd "$TARGET"
 echo "[java] Compilando e iniciando Spring Boot..."
 echo "[java] (Ctrl+C para parar)"

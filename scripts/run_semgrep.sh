@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # ============================================================================
 # run_semgrep.sh — analisa código com Semgrep usando rulesets de segurança
 #
@@ -21,9 +20,6 @@ REPORT_NAME="${2:-$(echo "$TARGET" | sed -E 's|^codigos/||;s|/|_|g')}"
 OUT_DIR="$ROOT/reports/sast/semgrep"
 mkdir -p "$OUT_DIR"
 
-# Rulesets oficiais de segurança da comunidade Semgrep.
-# Eles incluem regras para Python/Flask, Java/Spring, JS/TS/Express,
-# OWASP Top 10, SQLi, XSS, secrets etc.
 RULESETS=(
     "p/security-audit"
     "p/owasp-top-ten"

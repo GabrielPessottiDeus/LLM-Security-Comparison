@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 summarize_sast.py
 
@@ -23,9 +22,6 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parent.parent
 SAST_DIR = ROOT / "reports" / "sast"
 
-# ----------------------------------------------------------------------------
-# Parsers para cada ferramenta
-# ----------------------------------------------------------------------------
 
 def parse_bandit(path: Path) -> dict:
     """Bandit JSON: results[] com 'issue_severity' (LOW/MEDIUM/HIGH)."""
@@ -58,7 +54,7 @@ def parse_semgrep(path: Path) -> dict:
             sev[s] += 1
     return {
         "total":  sum(sev.values()),
-        "high":   sev["ERROR"],     # mapeamos ERROR -> HIGH
+        "high":   sev["ERROR"],
         "medium": sev["WARNING"],
         "low":    sev["INFO"],
     }
@@ -101,9 +97,6 @@ def parse_spotbugs(path: Path) -> dict:
         "low":    sev["3"],
     }
 
-# ----------------------------------------------------------------------------
-# Coleta
-# ----------------------------------------------------------------------------
 
 TOOL_CONFIG = [
     ("bandit",   "*.json", parse_bandit),
@@ -112,8 +105,6 @@ TOOL_CONFIG = [
     ("spotbugs", "*.xml",  parse_spotbugs),
 ]
 
-# nome do relatório segue padrão: casoXX_caso_<ia>_<lang>.<ext>
-# ex: caso01_auth_claude_python.json
 PATTERN = re.compile(r"^(?P<caso>caso\d+_[a-z]+)_(?P<ia>chatgpt|gemini|claude)_(?P<lang>python|java|javascript|typescript)$")
 
 def collect() -> list[dict]:
@@ -141,9 +132,6 @@ def collect() -> list[dict]:
             })
     return rows
 
-# ----------------------------------------------------------------------------
-# Saída
-# ----------------------------------------------------------------------------
 
 def write_csv(rows, out: Path):
     if not rows:
@@ -171,7 +159,6 @@ def write_md(rows, out: Path):
             f"{r['total']} | {r['high']} | {r['medium']} | {r['low']} |"
         )
 
-    # Agrega por (caso, ia, linguagem)
     from collections import defaultdict
     agg = defaultdict(lambda: {"total": 0, "high": 0, "medium": 0, "low": 0})
     for r in rows:

@@ -17,7 +17,6 @@ if [[ -z "$TARGET" ]]; then
 fi
 [[ ! -d "$TARGET" ]] && { echo "Diretório não existe: $TARGET"; exit 1; }
 
-# Caminho absoluto do alvo (ESLint precisa para o --resolve-plugins-relative-to)
 TARGET_ABS="$(cd "$TARGET" && pwd)"
 
 REPORT_NAME="${2:-$(echo "$TARGET" | sed -E 's|^codigos/||;s|/|_|g')}"
@@ -33,8 +32,6 @@ if [[ ! -x "$ESLINT_BIN" ]]; then
 fi
 
 echo "[eslint] Analisando $TARGET ..."
-# --no-eslintrc para ignorar qualquer .eslintrc do próprio código da LLM
-# --resolve-plugins-relative-to garante que os plugins sejam buscados em sast-configs/
 "$ESLINT_BIN" \
     --no-eslintrc \
     --config "$ESLINT_CONFIG" \

@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Sobe o MySQL via docker-compose e aguarda ele ficar saudável.
 set -euo pipefail
 

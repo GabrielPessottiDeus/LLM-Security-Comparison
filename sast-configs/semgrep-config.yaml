@@ -1,9 +1,4 @@
-# Configuração do Semgrep
-# Usamos os rulesets oficiais de segurança que cobrem as 4 linguagens do trabalho.
-# Documentação: https://semgrep.dev/docs/
-
-# Os rulesets são passados via --config no comando, mas deixamos
-# documentados aqui para referência:
+# Os rulesetos documentados aqui para referência:
 #
 # Rulesets utilizados:
 #   p/security-audit     -> auditoria geral de segurança (todas as linguagens)

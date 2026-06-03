@@ -1,13 +1,7 @@
-# Configuração do Bandit (SAST para Python)
 # Documentação: https://bandit.readthedocs.io/
 
-# Não excluímos nenhum teste por padrão — queremos a análise mais
-# abrangente possível para o comparativo de vulnerabilidades.
 exclude_dirs:
   - '/tests'
   - '/venv'
   - '/.venv'
   - '/__pycache__'
-
-# Nível de confiança e severidade reportados (LOW captura tudo)
-# Executamos via CLI com -ll -ii para granularidade máxima nos relatórios.

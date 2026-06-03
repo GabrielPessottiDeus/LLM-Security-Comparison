@@ -1,6 +1,3 @@
-// Configuração ESLint focada em SEGURANÇA para JS/TS.
-// Usamos formato CommonJS (.eslintrc.cjs) para máxima compatibilidade.
-//
 // Plugins de segurança:
 //   - eslint-plugin-security      -> regras gerais de segurança em Node
 //   - eslint-plugin-no-unsanitized-> bloqueia uso direto de innerHTML etc.
@@ -42,8 +39,6 @@ module.exports = {
         },
     ],
     rules: {
-        // Eleva todas as regras de segurança para "error" para o
-        // relatório ficar claro no comparativo.
         "security/detect-object-injection": "error",
         "security/detect-non-literal-fs-filename": "error",
         "security/detect-non-literal-regexp": "error",
@@ -55,7 +50,7 @@ module.exports = {
         "security/detect-no-csrf-before-method-override": "error",
         "security/detect-possible-timing-attacks": "error",
         "security/detect-pseudoRandomBytes": "error",
-        // Não nos importamos com warnings de estilo no comparativo
+        // warnings de estilo
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-explicit-any": "off",

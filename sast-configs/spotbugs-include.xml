@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Filtro do SpotBugs: incluímos TODAS as categorias relevantes para análise
-  de vulnerabilidades, em especial as do plugin find-sec-bugs.
-  Documentação: https://spotbugs.readthedocs.io/
--->
 <FindBugsFilter>
     <!-- Vulnerabilidades de segurança (find-sec-bugs) -->
     <Match>

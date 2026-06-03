@@ -167,9 +167,3 @@ docker exec -it llm-sec-mysql mysql -uappuser -papppass
 # Listar containers
 docker ps
 ```
-
-## Dicas
-
-- **Trabalho mais limpo:** rode `reset_db.sh all` entre as 3 IAs do mesmo caso, para garantir que os bancos estão idênticos.
-- **DAST com autenticação:** o ZAP baseline não logra (login). Para casos 01 e 05 (auth/sessão), o full scan ainda encontra muito sem auth, mas para análise profunda você precisaria configurar contexto autenticado no ZAP (veja `docs/ZAP_AUTENTICADO.md`).
-- **Logs salvos:** redirecione stdout das apps para arquivo se quiser preservar (ex: `... | tee logs/caso01_chatgpt_python.log`).

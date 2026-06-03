@@ -1,11 +1,11 @@
-# ============================================================================
+# ===========================================================================
 # run_bandit.sh — analisa código Python com Bandit
 #
 # Uso:
 #   bash scripts/run_bandit.sh <caminho_codigo> [nome_relatorio]
 # Exemplo:
 #   bash scripts/run_bandit.sh codigos/caso01_auth/claude/python
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

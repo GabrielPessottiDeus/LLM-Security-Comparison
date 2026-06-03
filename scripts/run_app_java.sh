@@ -1,20 +1,8 @@
-# ============================================================================
-# run_app_java.sh — compila e sobe um app Spring Boot.
+# ===========================================================================
+# compila e sobe um app Spring Boot.
 #
 # Uso:  bash scripts/run_app_java.sh codigos/caso01_auth/claude/java
-#
-# O script:
-#   1) Detecta o caso pelo caminho e exporta variáveis DB_* no ambiente
-#   2) Usa Java 21 (Spring Boot 3.x não suporta Java 25)
-#   3) Compila e sobe via mvn spring-boot:run
-#
-# Spring Boot lê variáveis de ambiente automaticamente quando o
-# application.properties usa placeholders ${DB_HOST}, ${DB_USER} etc.
-# Se o código gerado pela LLM usar essa abordagem, vai funcionar.
-# Se a LLM hardcoded as credenciais no application.properties, ainda
-# vai conectar (porque os valores hardcoded estão corretos), mas o SAST
-# vai detectar a vulnerabilidade.
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 TARGET="${1:-}"

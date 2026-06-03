@@ -1,22 +1,12 @@
-# ============================================================================
-# run_spotbugs.sh — analisa código Java com SpotBugs + find-sec-bugs
+# ===========================================================================
+# analisa código Java com SpotBugs + find-sec-bugs
 #
 # SpotBugs analisa BYTECODE compilado (.class/.jar). Por isso o script
 # primeiro compila o projeto Maven (mvn compile) antes de analisar.
 #
 # Uso:
 #   bash scripts/run_spotbugs.sh <caminho_codigo_java> [nome_relatorio]
-#
-# Recursos chave:
-#   1) Detecta Java 21 automaticamente (Java 25 não é suportado por SpotBugs 4.8.6)
-#   2) Compila o código com 'mvn clean compile'
-#   3) **Resolve o classpath completo via maven-dependency-plugin** e passa
-#      todas as bibliotecas (Spring, Hibernate, BCrypt, etc.) como
-#      auxClasspath para o SpotBugs. Isso permite que o detector "enxergue"
-#      o código de bibliotecas e detecte vulnerabilidades sutis como SQL
-#      injection através de Spring Data JPA, taint tracking entre
-#      controllers e repositories, etc.
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

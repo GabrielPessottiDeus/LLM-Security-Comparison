@@ -1,18 +1,9 @@
-# ============================================================================
+# ===========================================================================
 # run_app_node.sh — instala deps, builda (se TS) e sobe uma app Node.
 #
 # Uso:  bash scripts/run_app_node.sh codigos/caso01_auth/claude/javascript
 #       bash scripts/run_app_node.sh codigos/caso01_auth/claude/typescript
-#
-# O script:
-#   1) Detecta o caso pelo caminho e exporta variáveis DB_* no ambiente
-#   2) Instala deps (npm install)
-#   3) Se for TS com script "build" no package.json -> compila
-#   4) Roda:
-#      - npm start (se houver script "start")
-#      - npx ts-node <entry> (se for TS sem start)
-#      - node <entry> (se for JS sem start)
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 TARGET="${1:-}"

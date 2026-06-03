@@ -3,7 +3,7 @@
 #
 # Uso:  bash scripts/reset_db.sh <numero_do_caso>
 #       bash scripts/reset_db.sh 1     # reseta caso01_auth
-#       bash scripts/reset_db.sh all   # reseta todos
+#       bash scripts/reset_db.sh all   # reseta todos 
 set -euo pipefail
 
 CASE="${1:-}"

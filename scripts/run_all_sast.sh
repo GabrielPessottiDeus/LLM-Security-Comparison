@@ -1,15 +1,14 @@
-# ============================================================================
-# run_all_sast.sh — varre TODOS os códigos colados em codigos/ e roda
+# ===========================================================================
+# varre TODOS os códigos colados em codigos/ e roda
 # automaticamente a ferramenta SAST apropriada para cada linguagem.
 #
-# Para cada pasta codigos/caso*/<ia>/<linguagem>/ que tiver código:
 #   - python     -> Bandit + Semgrep
 #   - java       -> SpotBugs + Semgrep
 #   - javascript -> ESLint + Semgrep
 #   - typescript -> ESLint + Semgrep
 #
 # Uso:  bash scripts/run_all_sast.sh
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

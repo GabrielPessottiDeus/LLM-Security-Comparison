@@ -1,6 +1,4 @@
 # ============================================================================
-# setup_fedora.sh
-#
 # Instala tudo o que é necessário no Fedora para:
 #   - Rodar as aplicações geradas pelas LLMs (Python, Java, Node)
 #   - Rodar as ferramentas SAST localmente (Bandit, Semgrep, SpotBugs, ESLint)

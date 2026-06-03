@@ -1,17 +1,8 @@
-# ============================================================================
+# ===========================================================================
 # run_app_python.sh — sobe um app Python/Flask de uma pasta de código.
 #
 # Uso:  bash scripts/run_app_python.sh codigos/caso01_auth/claude/python
-#
-# O script:
-#   1) Detecta o caso a partir do caminho (caso01_auth, caso02_products, etc.)
-#   2) Exporta DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME no ambiente
-#      antes de subir a app. Isso permite que o código gerado pelas LLMs
-#      obtenha credenciais via os.environ em vez de hardcoded, mantendo
-#      o experimento metodologicamente mais limpo.
-#   3) Cria um venv local, instala requirements.txt
-#   4) Detecta o arquivo principal e roda
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 TARGET="${1:-}"

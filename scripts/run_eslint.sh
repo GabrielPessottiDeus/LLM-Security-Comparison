@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# ============================================================================
+# ===========================================================================
 # run_eslint.sh — analisa JS/TS com ESLint + plugins de segurança
 #
 # Uso:
 #   bash scripts/run_eslint.sh <caminho_codigo_js_ou_ts> [nome_relatorio]
-# ============================================================================
+# ===========================================================================
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

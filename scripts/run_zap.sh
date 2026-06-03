@@ -1,6 +1,4 @@
 # ============================================================================
-# run_zap.sh — DAST com OWASP ZAP via Docker, com warm-up de endpoints
-#
 # Uso:
 #   bash scripts/run_zap.sh <numero_caso> [baseline|full] [tag]
 #

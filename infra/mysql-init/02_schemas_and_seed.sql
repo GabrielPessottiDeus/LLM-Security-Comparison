@@ -1,4 +1,4 @@
--- CASO 01 - autenticação (tabela users)
+-- CASO 01 - autenticação (tabela users) 
 USE caso01_auth;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,

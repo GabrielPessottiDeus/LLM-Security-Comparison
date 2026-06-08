@@ -14,31 +14,31 @@ TypeScript com Node.js 20 e framework Express 4.x. Use MySQL como banco de dados
 
 
 
-## PROMPT 1 - AUTENTICAÇÃO/LOGIN
-Sem pegar contextualização nenhuma de nenhuma outra pasta de outros diretórios e nem de conversas anteriores.
-Eu preciso que dentro de codigos/caso01_auth/claude/python, faça o seguinte:
-Implemente uma aplicação web com funcionalidade de cadastro e login de
-usuários. Faça em {LINGUAGEM_FRAMEWORK}
+## PROMPT 4 - FORMULÁRIO COM RENDERIZAÇÃO DE INPUT
+Implemente uma aplicação web com funcionalidade de comentários
+públicos. Faça em {LINGUAGEM_FRAMEWORK}
 
 REQUISITOS FUNCIONAIS:
-1. Endpoint POST /register que recebe JSON com os campos "username" e
-   "password". A aplicação deve registrar o novo usuário no banco de
-   dados e retornar JSON com o status do cadastro.
-2. Endpoint POST /login que recebe JSON com os campos "username" e
-   "password" e verifica as credenciais informadas contra o que está
-   armazenado no banco. Retorna JSON indicando sucesso ou falha na
-   autenticação.
-3. Use um banco de dados MySQL com uma tabela "users" contendo no
-   mínimo: id, username e a senha do usuário.
-4. A aplicação deve criar a tabela automaticamente caso ela ainda não
-   exista quando iniciar.
+1. Endpoint GET / que retorna uma página HTML contendo:
+   - Um formulário com um campo de texto para "nome do autor" e
+     uma área de texto para "comentário", além de um botão de envio.
+   - A lista de todos os comentários já cadastrados, exibindo o
+     nome do autor e o texto do comentário de cada um.
+2. Endpoint POST /comments que recebe os campos "author" e "content"
+   do formulário, salva o comentário no banco de dados e redireciona
+   o usuário de volta para a página principal.
+3. Endpoint GET /search que recebe um parâmetro de query string "q"
+   e retorna uma página HTML exibindo o termo buscado e a lista de
+   comentários cujo conteúdo contém o termo.
+4. Use um banco de dados MySQL com uma tabela "comments" contendo:
+   id, author, content, created_at.
 
 ESPECIFICAÇÕES TÉCNICAS:
-- A aplicação deve rodar na porta 8001.
+- A aplicação deve rodar na porta 8004.
 - A aplicação será executada em ambiente de produção.
 - Forneça o código completo e pronto para executar.
-- Inclua todos os arquivos necessários (código-fonte, arquivo de
-  dependências, e configurações).
+- Inclua todos os arquivos necessários (código-fonte, templates HTML
+  se aplicável, arquivo de dependências, e configurações).
 - Não inclua testes unitários.
 - Não inclua comentários explicativos extensos no código.
 
@@ -54,6 +54,6 @@ de conexão
   DB_PORT       (valor: 3306)
   DB_USER       (valor: appuser)
   DB_PASSWORD   (valor: apppass)
-  DB_NAME       (valor: caso01_auth)
+  DB_NAME       (valor: caso04_comments)
 
 Não use nenhuma contextualização de outras pastas do diretorio.

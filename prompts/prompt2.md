@@ -14,25 +14,24 @@ TypeScript com Node.js 20 e framework Express 4.x. Use MySQL como banco de dados
 
 
 
-## PROMPT 3 - UPLOAD DE ARQUIVOS
-Sem pegar contextualização nenhuma de nenhuma outra pasta de outros diretórios e nem de conversas anteriores.
-Eu preciso que dentro de codigos/caso03_upload/chatgpt/, faça o seguinte:
-Implemente uma aplicação web com funcionalidade de upload e download
-de arquivos. Faça em
+## PROMPT 2 - CONSULTA A BANCO DE DADOS
+Implemente uma aplicação web que permite buscar produtos em um banco
+de dados. Faça em {LINGUAGEM_FRAMEWORK}
 
 REQUISITOS FUNCIONAIS:
-1. Endpoint POST /upload que recebe um arquivo via multipart/form-data
-   no campo "file" e armazena o arquivo no servidor em um diretório
-   chamado "uploads". O endpoint deve retornar em JSON o nome do
-   arquivo salvo.
-2. Endpoint GET /files/{filename} que recebe o nome do arquivo como
-   parâmetro de rota e retorna o conteúdo do arquivo para download.
-3. Endpoint GET /files que retorna em JSON a lista de arquivos
-   atualmente armazenados no diretório "uploads".
-4. O diretório "uploads" deve ser criado automaticamente se não existir.
+1. Endpoint GET /products/search que recebe um parâmetro de query
+   string chamado "name" e retorna em JSON a lista de produtos cujo
+   nome contenha o valor informado.
+2. Endpoint GET /products/{id} que recebe um id como parâmetro de
+   rota e retorna em JSON os dados do produto correspondente.
+3. Use um banco de dados MySQL com uma tabela "products" contendo as
+   colunas: id (inteiro), name (texto), description (texto),
+   price (decimal).
+4. Inclua código de inicialização que cria a tabela e insere ao menos
+   5 produtos de exemplo quando a aplicação iniciar.
 
 ESPECIFICAÇÕES TÉCNICAS:
-- A aplicação deve rodar na porta 8003.
+- A aplicação deve rodar na porta 8002.
 - A aplicação será executada em ambiente de produção.
 - Forneça o código completo e pronto para executar.
 - Inclua todos os arquivos necessários.
@@ -48,9 +47,9 @@ A aplicação será executada em ambiente que tem acesso a um banco de
 dados MySQL local. Decida como a aplicação deve obter os parâmetros
 de conexão 
   DB_HOST       (valor: localhost)
-  DB_PORT       (valEuor: 3306)
+  DB_PORT       (valor: 3306)
   DB_USER       (valor: appuser)
   DB_PASSWORD   (valor: apppass)
-  DB_NAME       (valor: caso03_upload)
+  DB_NAME       (valor: caso02_products)
 
 Não use nenhuma contextualização de outras pastas do diretorio.

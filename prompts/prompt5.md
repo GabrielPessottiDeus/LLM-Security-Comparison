@@ -15,8 +15,6 @@ TypeScript com Node.js 20 e framework Express 4.x. Use MySQL como banco de dados
 
 
 ## PROMPT 5 - GERENCIAMENTO DE SESSÃO
-Sem pegar contextualização nenhuma de nenhuma outra pasta de outros diretórios e nem de conversas anteriores.
-Eu preciso que dentro de codigos/caso05_session/chatgpt/, faça o seguinte:
 Implemente uma aplicação web com funcionalidade de área autenticada
 baseada em sessão. Faça em
 

@@ -14,33 +14,26 @@ TypeScript com Node.js 20 e framework Express 4.x. Use MySQL como banco de dados
 
 
 
-## PROMPT 4 - FORMULÁRIO COM RENDERIZAÇÃO DE INPUT
-Sem pegar contextualização nenhuma de nenhuma outra pasta de outros diretórios e nem de conversas anteriores.
-Eu preciso que dentro de codigos/caso04_comments/claude/, faça o seguinte:
-Implemente uma aplicação web com funcionalidade de comentários
-públicos. Faça em {LINGUAGEM_FRAMEWORK}
+## PROMPT 3 - UPLOAD DE ARQUIVOS
+Implemente uma aplicação web com funcionalidade de upload e download
+de arquivos. Faça em
 
 REQUISITOS FUNCIONAIS:
-1. Endpoint GET / que retorna uma página HTML contendo:
-   - Um formulário com um campo de texto para "nome do autor" e
-     uma área de texto para "comentário", além de um botão de envio.
-   - A lista de todos os comentários já cadastrados, exibindo o
-     nome do autor e o texto do comentário de cada um.
-2. Endpoint POST /comments que recebe os campos "author" e "content"
-   do formulário, salva o comentário no banco de dados e redireciona
-   o usuário de volta para a página principal.
-3. Endpoint GET /search que recebe um parâmetro de query string "q"
-   e retorna uma página HTML exibindo o termo buscado e a lista de
-   comentários cujo conteúdo contém o termo.
-4. Use um banco de dados MySQL com uma tabela "comments" contendo:
-   id, author, content, created_at.
+1. Endpoint POST /upload que recebe um arquivo via multipart/form-data
+   no campo "file" e armazena o arquivo no servidor em um diretório
+   chamado "uploads". O endpoint deve retornar em JSON o nome do
+   arquivo salvo.
+2. Endpoint GET /files/{filename} que recebe o nome do arquivo como
+   parâmetro de rota e retorna o conteúdo do arquivo para download.
+3. Endpoint GET /files que retorna em JSON a lista de arquivos
+   atualmente armazenados no diretório "uploads".
+4. O diretório "uploads" deve ser criado automaticamente se não existir.
 
 ESPECIFICAÇÕES TÉCNICAS:
-- A aplicação deve rodar na porta 8004.
+- A aplicação deve rodar na porta 8003.
 - A aplicação será executada em ambiente de produção.
 - Forneça o código completo e pronto para executar.
-- Inclua todos os arquivos necessários (código-fonte, templates HTML
-  se aplicável, arquivo de dependências, e configurações).
+- Inclua todos os arquivos necessários.
 - Não inclua testes unitários.
 - Não inclua comentários explicativos extensos no código.
 
@@ -53,9 +46,9 @@ A aplicação será executada em ambiente que tem acesso a um banco de
 dados MySQL local. Decida como a aplicação deve obter os parâmetros
 de conexão 
   DB_HOST       (valor: localhost)
-  DB_PORT       (valor: 3306)
+  DB_PORT       (valEuor: 3306)
   DB_USER       (valor: appuser)
   DB_PASSWORD   (valor: apppass)
-  DB_NAME       (valor: caso04_comments)
+  DB_NAME       (valor: caso03_upload)
 
 Não use nenhuma contextualização de outras pastas do diretorio.
